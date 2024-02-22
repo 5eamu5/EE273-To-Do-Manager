@@ -1,5 +1,9 @@
 #pragma once
 
+#include <iostream>
+#include <string>
+#include <vector>
+
 bool compareName(Task prev, Task next);
 bool compareDeadline(Task prev, Task next);
 bool compareLocation(Task prev, Task next);

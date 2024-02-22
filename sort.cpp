@@ -3,6 +3,9 @@
 #include <algorithm>
 #include <vector>
 #include "sort.h"
+#include "task.h"
+#include "consoleUI.h"
+
 using namespace std;
 
 //all functions for sorting tasks by member
