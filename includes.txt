@@ -1,0 +1,20 @@
+//include these in every file 
+//update this file with every library & header we use
+
+//.cpp
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+#include "task.h"
+#include "consoleUI.h"
+#include "sort.h"
+using namespace std;
+
+//.h
+#pragma once
+#include<iostream>
+#include<string>
+#include<vector>
+#include<algorithm>
