@@ -4,7 +4,6 @@
 
 using namespace std;
 
-//Task Constructor
 Task::Task(string Name, string Note, int Deadline, int Reminder, string Location, string Subject, bool Urgent){
 	this->Name = Name;
 	this->Note = Note;
@@ -15,7 +14,6 @@ Task::Task(string Name, string Note, int Deadline, int Reminder, string Location
 	this->Urgent = Urgent;
 }
 
-//Task Getters
 string Task::getName(){
 	return Name;
 }
@@ -38,7 +36,6 @@ bool Task::getUrgent(){
 	return Urgent;
 }
 
-//Task Setters
 string Task::setName(string Name){
 	this->Name = Name;
 }

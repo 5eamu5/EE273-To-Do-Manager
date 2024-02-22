@@ -1,10 +1,4 @@
 #pragma once
-#include <iostream>
-#include <string>
-
-using namespace std;
-
-//functions for UI
 
 //main page of UI
 void contents();
@@ -15,10 +9,22 @@ void editTask();
 void sortTask();
 void deleteTask(); 
 
-//sorting functions
-//leaving as void for now, probably need to change type later
-void sortName();
-void sortDeadline();
-void sortLocation();
-void sortSubject();
-void sortUrgent();
+//editing subtree
+void selectTaskToEdit(); 
+
+void editName();
+void editDeadline();
+void editLocation();
+void editSubject();
+void editUrgent(); 
+
+//sorting subtree 
+//this is just the UI part of the sorting, not the algorithm itself
+void UIsortName();
+void UIsortDeadline();
+void UIsortLocation();
+void UIsortSubject();
+void UIsortUrgent();
+
+//delete task subtree
+void selectTaskToDelete();
