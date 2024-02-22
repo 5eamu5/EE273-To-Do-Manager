@@ -2,12 +2,11 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-
 #include "task.h" 
 
 using namespace std;
 
-Task::Task(string Name, string Note, int Deadline, int Reminder, string Location, string Subject, bool Urgent){
+Task::Task(std::string Name, std::string Note, int Deadline, int Reminder, std::string Location, std::string Subject, bool Urgent){
 	this->Name = Name;
 	this->Note = Note;
 	this->Deadline = Deadline;
@@ -18,10 +17,10 @@ Task::Task(string Name, string Note, int Deadline, int Reminder, string Location
 }
 
 
-string Task::getName(){ 
+std::string Task::getName(){
 	return Name;
 }
-string Task::getNote() { 
+std::string Task::getNote() {
 	return Note;
 }
 int Task::getDeadline(){
@@ -30,35 +29,35 @@ int Task::getDeadline(){
 int Task::getReminder(){
 	return Reminder;
 }
-string Task::getLocation(){
+std::string Task::getLocation(){
 	return Location;
 }
-string Task::getSubject(){
+std::string Task::getSubject(){
 	return Subject;
 }
 bool Task::getUrgent(){
 	return Urgent;
 }
 
-string Task::setName(string Name){
+void Task::setName(std::string Name){
 	this->Name = Name;
 }
-string Task::setNote(string Note){
+void Task::setNote(std::string Note){
 	this->Note = Note;
 }
-int Task::setDeadline(int Deadline){
+void Task::setDeadline(int Deadline){
 	this->Deadline = Deadline;
 }
-int Task::getReminder(int Reminder){
+void Task::getReminder(int Reminder){
 	this->Reminder = Reminder;
 }
-string Task::setLocation(string Location){
+void Task::setLocation(std::string Location){
 	this->Location = Location;
 }
-string Task::setSubject(string Subject){
+void Task::setSubject(std::string Subject){
 	this->Subject = Subject;
 }
-bool Task::setUrgent(bool Urgent){
+void Task::setUrgent(bool Urgent){
 	this->Urgent = Urgent;
 }
 

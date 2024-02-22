@@ -1,9 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <string>
-#include <vector>
-
 //main page of UI
 void contents();
 

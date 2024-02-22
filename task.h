@@ -3,38 +3,38 @@
 class Task {
 public:
 	//Constructor and Destructor
-	Task(string Name, string note, int Deadline, int Reminder, string Location, string Subject, bool Urgent);
+	Task(std::string Name, std::string note, int Deadline, int Reminder, std::string Location, std::string Subject, bool Urgent);
 
 	//Getters
-	string getName();
-	string getNote();
+	std::string getName();
+	std::string getNote();
 	int getDeadline();
 	int getReminder();
-	string getLocation();
-	string getSubject();
+	std::string getLocation();
+	std::string getSubject();
 	bool getUrgent();
 
 	//Setters
-	string setName(string Name);
-	string setNote(string Note);
-	int setDeadline(int Deadline);
-	int getReminder(int Reminder);
-	string setLocation(string Location);
-	string setSubject(string Subject);
-	bool setUrgent(bool Urgent);
+	void setName(std::string Name);
+	void setNote(std::string Note);
+	void setDeadline(int Deadline);
+	void getReminder(int Reminder);
+	void setLocation(std::string Location);
+	void setSubject(std::string Subject);
+	void setUrgent(bool Urgent);
 
 private:
 	//Unwanted Constructors
 	Task();
-	Task(string Name);
+	Task(std::string Name);
 	~Task();
 	
 	//Variables
-	string Name;
-	string Note;
+	std::string Name;
+	std::string Note;
 	int Deadline;
 	int Reminder;
-	string Location;
-	string Subject;
+	std::string Location;
+	std::string Subject;
 	bool Urgent;
 };
