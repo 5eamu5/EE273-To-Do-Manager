@@ -1,17 +1,20 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
+
 #include "consoleUI.h"
+#include "task.h" 
+using namespace std;
 
-//unsure about the following includes need to look into it
-//but the UI will need to call all the sorting and editing functions 
-// so we need to include those files in here too?
-#include "task.h"
-#include "sort.h"
-
-using namepsace std;
+using namespace std;
 
 void contents() {
-
+	//main menu
+	cout << "TODO MANAGER";
+	cout << endl;
+	cout << "------------";
+	cout << endl;
 }
 
 void createTask() {

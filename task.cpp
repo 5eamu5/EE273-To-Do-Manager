@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
-#include "task.h"
+#include <vector>
+#include <algorithm>
+
+#include "task.h" 
 
 using namespace std;
 
@@ -14,10 +17,11 @@ Task::Task(string Name, string Note, int Deadline, int Reminder, string Location
 	this->Urgent = Urgent;
 }
 
-string Task::getName(){
+
+string Task::getName(){ 
 	return Name;
 }
-string Task::getNote() {
+string Task::getNote() { 
 	return Note;
 }
 int Task::getDeadline(){
@@ -56,4 +60,8 @@ string Task::setSubject(string Subject){
 }
 bool Task::setUrgent(bool Urgent){
 	this->Urgent = Urgent;
+}
+
+Task::~Task() {
+
 }

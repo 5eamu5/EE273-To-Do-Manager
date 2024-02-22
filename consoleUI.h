@@ -1,7 +1,9 @@
 #pragma once
 
+
 //main page of UI
 void contents();
+
 
 //subtrees
 void createTask();
@@ -28,3 +30,4 @@ void UIsortUrgent();
 
 //delete task subtree
 void selectTaskToDelete();
+

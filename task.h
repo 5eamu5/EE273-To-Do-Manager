@@ -1,9 +1,11 @@
 #pragma once
 
+
 class Task {
 public:
 	//Constructor and Destructor
 	Task(string Name, string note, int Deadline, int Reminder, string Location, string Subject, bool Urgent);
+	
 
 	//Getters
 	string getName();
@@ -23,11 +25,12 @@ public:
 	string setSubject(string Subject);
 	bool setUrgent(bool Urgent);
 
+	~Task();
 private:
 	//Unwanted Constructors
 	Task();
 	Task(string Name);
-	~Task();
+	
 	
 	//Variables
 	string Name;
@@ -38,3 +41,4 @@ private:
 	string Subject;
 	bool Urgent;
 };
+
