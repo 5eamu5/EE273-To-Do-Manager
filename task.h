@@ -4,7 +4,6 @@ class Task {
 public:
 	//Constructor and Destructor
 	Task(string Name, string note, int Deadline, int Reminder, string Location, string Subject, bool Urgent);
-	~Task();
 
 	//Getters
 	string getName();
@@ -27,7 +26,8 @@ public:
 private:
 	//Unwanted Constructors
 	Task();
-	Task(string name);
+	Task(string Name);
+	~Task();
 	
 	//Variables
 	string Name;

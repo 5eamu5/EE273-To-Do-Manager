@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include "header.h"
+#include "task.h"
+
 using namespace std;
 
 //Task Constructor
