@@ -3,21 +3,12 @@
 #include <vector>
 #include "task.h"
 #include "consoleUI.h"
-#include "sort.h"
-
 using namespace std;
 
 int main() {
-
-	//do we create the vector of tasks in main? // 
 	
+	contents();
 
-	cout << "hello2 ";
-	cout << "ismaaeel is cracked at val";
-
-
-
-
-
+	system("pause");
 	return 0;
 }
