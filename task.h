@@ -3,7 +3,13 @@
 class Task {
 public:
 	//Constructor and Destructor
-	Task(std::string Name, std::string note, int Deadline, int Reminder, std::string Location, std::string Subject, bool Urgent);
+	Task(std::string func_name, int func_deadline, int func_reminder, std::string func_location, std::string func_subject, bool func_urgent, std::string func_note);
+	Task();
+	Task(std::string Name);
+	~Task();
+
+	//toString
+	std::string toString(); 
 
 	//Getters
 	std::string getName();
@@ -24,11 +30,6 @@ public:
 	void setUrgent(bool Urgent);
 
 private:
-	//Unwanted Constructors
-	Task();
-	Task(std::string Name);
-	~Task();
-	
 	//Variables
 	std::string Name;
 	std::string Note;
