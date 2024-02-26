@@ -7,16 +7,16 @@ void contents();
 void createTask();
 void editTask();
 void sortTask();
-void deleteTask(); 
+void deleteTask();
 
 //editing subtree
-void selectTaskToEdit(); 
+void selectTaskToEdit();
 
 void editName();
 void editDeadline();
 void editLocation();
 void editSubject();
-void editUrgent(); 
+void editUrgent();
 
 //sorting subtree 
 //this is just the UI part of the sorting, not the algorithm itself
