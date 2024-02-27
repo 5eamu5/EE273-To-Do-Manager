@@ -5,6 +5,7 @@ cout << std::string(2, '\n') << std::string(10, '-') << std::string(2, '\n');
 
   //<code block>
 
+  //IMPORTANT: MAKE SURE ANY STD::CIN IS INSIDE THE FORMATTING!
+
 cout << std::string(2, '\n') << std::string(10, '-') << std::string(2, '\n');
 
-//primary branches (edit, view, delete etc..)
