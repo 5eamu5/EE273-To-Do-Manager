@@ -24,7 +24,7 @@ public:
 	void setName(std::string Name);
 	void setNote(std::string Note);
 	void setDeadline(int Deadline);
-	void getReminder(int Reminder);
+	void setReminder(int Reminder);
 	void setLocation(std::string Location);
 	void setSubject(std::string Subject);
 	void setUrgent(bool Urgent);
