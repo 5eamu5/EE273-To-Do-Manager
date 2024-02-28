@@ -1,11 +1,11 @@
 // output formatting
 
-//contents
+//formatting any output to UI
 cout << std::string(2, '\n') << std::string(10, '-') << std::string(2, '\n');
 
   //<code block>
 
-  //IMPORTANT: MAKE SURE ANY STD::CIN IS INSIDE THE FORMATTING!
-
 cout << std::string(2, '\n') << std::string(10, '-') << std::string(2, '\n');
+cin >> input //always ensure cin is outside cout block
+
 
