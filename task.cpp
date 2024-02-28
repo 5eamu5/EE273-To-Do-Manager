@@ -9,13 +9,13 @@ using namespace std;
 
 //constructors/destructors
 Task::Task(std::string func_name, int func_deadline, int func_reminder, std::string func_location, std::string func_subject, bool func_urgent, std::string func_note) {
-	func_name = Name;
-	func_deadline = Deadline;
-	func_reminder = Reminder;
-	func_location = Location;
-	func_subject = Subject;
-	func_urgent = Urgent;
-	func_note = Note;
+	Name = func_name;
+	Deadline = func_deadline;
+	Reminder = func_deadline;
+	Location = func_location; 
+	Subject = func_subject; 
+	Urgent = func_urgent; 
+	Note = func_note; 
 }
 Task::Task() {
 
@@ -27,19 +27,18 @@ Task::~Task() {}
 
 std::string Task::toString() {
 	std::stringstream ss;
-	ss << "Name: " << getName() << endl; //string
-	ss << "Deadline: " << getDeadline() << endl; //int
-	ss << "Reminder: " << getReminder() << endl; //int
-	ss << "Location: " << getLocation() << endl; //string
-	ss << "Subject: " << getSubject() << endl; //string
-	ss << "Note: " << getNote() << endl; //string
-	ss << "Urgent: " << getUrgent() << endl; //string
+	ss << "1. Name: " << getName() << endl; //string
+	ss << "2. Deadline: " << getDeadline() << endl; //int
+	ss << "3. Reminder: " << getReminder() << endl; //int
+	ss << "4. Location: " << getLocation() << endl; //string
+	ss << "5. Subject: " << getSubject() << endl; //string
+	ss << "6. Note: " << getNote() << endl; //string
+	ss << "7. Urgent: " << getUrgent() << endl; //string
 	return ss.str();
 }
 
 //setters and getters
 std::string Task::getName(){
-	std::cout << Name;
 	return Name;
 }
 std::string Task::getNote() {
@@ -70,7 +69,7 @@ void Task::setNote(std::string Note) {
 void Task::setDeadline(int Deadline) {
 	this->Deadline = Deadline;
 }
-void Task::getReminder(int Reminder) {
+void Task::setReminder(int Reminder) {
 	this->Reminder = Reminder;
 }
 void Task::setLocation(std::string Location) {
