@@ -3,24 +3,11 @@
 //main page of UI
 void contents();
 
-
 //primary branches
-void createTask();
-void editTask();
-void sortTask();
-void deleteTask();
-
-
-//editing subtree
-int selectTaskToEdit(std::vector<Task> general);
-
-void editName(Task temp);
-void editDeadline(Task temp);
-void editReminder(Task temp);
-void editLocation(Task temp);
-void editSubject(Task temp);
-void editNote(Task temp);
-void editUrgent(Task temp);
+void createTaskUI();
+void editTaskUI();
+void sortTaskUI();
+void deleteTaskUI();
 
 //sorting subtree 
 //this is just the UI part of the sorting, not the algorithm itself
@@ -37,6 +24,7 @@ void selectTaskToDelete();
 void returnToContents();
 void returnToEdit();
 void returnToSort();
+void returnToDelete();
 
 void upperDivider();
 void lowerDivider();
