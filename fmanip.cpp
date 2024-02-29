@@ -38,8 +38,8 @@ void readfromFile(vector<Task>& input) {
     ifstream file(filename);
     if (file.is_open()) {
 
+        // Read data from the file and input into class objects
         std::string line;
-
         while (getline(file, line)) {
 
             istringstream iss(line);
