@@ -34,33 +34,38 @@ void savetoFile(vector<Task>& input) {
 }
 
 void readfromFile(vector<Task>& input) {
+
     ifstream file(filename);
-    if (!file.is_open()) {
-        cout << "Error: Unable to open file." << endl;
-        return;
+    if (file.is_open()) {
+
+        std::string line;
+
+        while (getline(file, line)) {
+
+            istringstream iss(line);
+            std::string info;
+            vector<std::string> objAttributes;
+
+            while (getline(iss, info, ',')) {
+                objAttributes.push_back(info);
+            }
+            if (objAttributes.size() == 7) {
+
+                string name = objAttributes[0];
+                int deadline = stoi(objAttributes[1]);
+                int reminder = stoi(objAttributes[2]);
+                string location = objAttributes[3];
+                string subject = objAttributes[4];
+                bool urgent = stoi(objAttributes[5]);
+                string note = objAttributes[6];
+
+                Task temp(name, deadline, reminder, location, subject, urgent, note);
+                input.push_back(temp);
+            }
+        }
     }
-
-    // Read data from the file and input into class objects
-    std::string line;
-    while (getline(file, line)) {
-        istringstream iss(line);
-        std::string info;
-        vector<std::string> objAttributes;
-        while (getline(iss, info, ',')) {
-            objAttributes.push_back(info);
-        }
-        if (objAttributes.size() == 7) {
-            string name = objAttributes[0];
-            int deadline = stoi(objAttributes[1]);
-            int reminder = stoi(objAttributes[2]);
-            string location = objAttributes[3];
-            string subject = objAttributes[4];
-            bool urgent = stoi(objAttributes[5]);
-            string note = objAttributes[6];
-
-            Task temp(name, deadline, reminder, location, subject, urgent, note);
-            input.push_back(temp);
-        }
+    else {
+        cout << "Error: Unable to open file." << endl;
     }
 
     // Close the file
