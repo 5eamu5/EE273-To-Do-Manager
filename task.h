@@ -31,11 +31,11 @@ public:
 
 private:
 	//Variables
-	std::string Name;
-	std::string Note;
-	int Deadline;
-	int Reminder;
-	std::string Location;
-	std::string Subject;
-	bool Urgent;
+	std::string Name{ "default" };
+	std::string Note{"default"};
+	int Deadline{ 0 };
+	int Reminder{ 0 }; 
+	std::string Location{ "default" };
+	std::string Subject{ "default" };
+	bool Urgent{ 0 };
 };
