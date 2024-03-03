@@ -8,7 +8,6 @@
 using namespace std;
 
 //all functions for sorting tasks by member
-//look at Student.cpp from Lab11 Ex4. 
 bool compareName(Task& prev, Task& next) {
 	return prev.getName() < next.getName();
 }
