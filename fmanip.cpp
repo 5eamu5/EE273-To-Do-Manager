@@ -7,7 +7,7 @@
 #include "task.h"
 using namespace std;
 
-std::string filename = "savedata.txt";
+std::string const filename = "savedata.txt";
 
 void wipeFile() {
     ofstream file(filename, std::ios::out | std::ios::trunc);
@@ -23,7 +23,7 @@ void savetoFile(vector<Task>& input) {
     ofstream file(filename);
     if (file.is_open()) {
         for (auto i : input) {
-            file << i.getName() <<","<< i.getNote() << "," << i.getDeadline() << "," << i.getReminder() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << endl;
+            file << i.getName() << "," << i.getDeadline() << "," << i.getReminder() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() <<  endl;
         }
         cout << "Data Saved" << filename << endl;
         file.close();
