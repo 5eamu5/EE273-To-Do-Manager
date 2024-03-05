@@ -29,6 +29,7 @@ Task taskManager::createTask(){
 	std::string create_subject;
 	std::string create_note;
 
+	std::cout << "Please enter the following data about your task: " << std::endl;
 	std::cout << "Name: ";
 	std::cin >> create_name;
 	std::cout << "Deadline: ";
@@ -57,40 +58,30 @@ Task taskManager::editTask() {
 	std::cout << "Select an element to edit: " << std::endl << temp.toString() << std::endl;
 
 	std::cin >> edit_input;
-	//need to catch false inputs here
 	switch (edit_input) {
 	case 1:
 		editName(temp);
-		returnToEdit();
-
+		break;
 	case 2:
 		editDeadline(temp);
-		returnToEdit();
-
+		break;
 	case 3:
-
 		editReminder(temp);
-		returnToEdit();
-
+		break;
 	case 4:
 		editLocation(temp);
-		returnToEdit();
-
+		break;
 	case 5:
 		editSubject(temp);
-		returnToEdit();
-
+		break;
 	case 6:
-
 		editNote(temp);
-		returnToEdit();
-
+		break; 
 	case 7:
 		editUrgent(temp);
-		returnToEdit();
-
+		break; 
 	}
-
+	return temp;
 }
 Task taskManager::sortTask(std::vector<Task> vec) {
 	Task temp;
@@ -179,3 +170,4 @@ void taskManager::editUrgent(Task temp) {
 	temp.setUrgent(edit_urgent);
 	std::cout << "New Task Urgent: " << temp.getUrgent();
 }
+
