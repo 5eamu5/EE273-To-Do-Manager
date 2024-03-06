@@ -4,17 +4,20 @@
 #include "task.h" 
 #include "taskManager.h"
 #include "consoleUI.h"
-#include "editTask.h"
-#include "sortTask.h"
-#include "deleteTask.h"
 #include "fmanip.h"
+#include "taskManager.h"
 
 using namespace std;
 taskManager task_manager;
 std::vector<Task> general = task_manager.pushGeneral();
+bool start = false;
 
 void contents() {
 
+	if (start == false) {
+		readfromFile(general);
+		start = true;
+	}
 	std::string contents_input;
 
 	upperDivider();
@@ -33,10 +36,12 @@ void contents() {
 
 	std::cin >> contents_input;
 	if (contents_input == "q") {
+		savetoFile(general);
 		exit(0);
 	}
 	else if (contents_input == "s") {
-		savetoFile(task_manager.pushGeneral(), "savedata.txt");
+		task_manager.pushGeneral();
+		savetoFile(general);
 		contents();
 	}	
 	int contents_input_int = std::stoi(contents_input);
@@ -71,6 +76,7 @@ void createTaskUI() {
 	std::cout << "-CREATE NEW TASK-" << endl;
 	Task temp = task_manager.createTask(); 
 	std::cout << "\n" << temp.toString() << std::endl;
+	general.push_back(temp);
 	returnToContents();
 
 	lowerDivider(); 
@@ -83,6 +89,7 @@ void editTaskUI() {
 	std::cout << "-EDIT A TASK-" << endl;
 	Task temp = task_manager.editTask();
 	std::cout << "\n" << temp.toString() << std::endl;
+	general.push_back(temp);
 	returnToEdit();
 
 	lowerDivider();
@@ -141,10 +148,11 @@ void returnToContents() {
 		contents();
 	}
 	else {
-		savetoFile(general, "savedata.txt");
+		savetoFile(general);
 		exit(0);
 	}
 }
+
 void returnToEdit() {
 	char return_to_edit;
 

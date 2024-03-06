@@ -3,12 +3,12 @@
 #include <vector>
 #include "task.h"
 #include "consoleUI.h"
+#include "fmanip.h"
 using namespace std;
 
 int main() {
-	
+
 	contents();
 
-	system("pause");
 	return 0;
 }

@@ -7,15 +7,17 @@
 #include "task.h"
 using namespace std;
 
-std::string const filename = "savedata.txt";
+
+string const filename = "savedata.txt";
 
 void wipeFile() {
-    ofstream file(filename, std::ios::out | std::ios::trunc);
+    ofstream file(filename, std::ofstream::trunc);
+
     if (file.is_open()) {
         file.close();
     }
     else {
-        cout << "Error: Unable to open " << filename << " for wiping." << endl;
+        cout << "Error: Unable to open file " << filename << " for writing." << std::endl;
     }
 }
 

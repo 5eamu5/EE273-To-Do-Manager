@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
 #include "taskManager.h"
 #include "task.h"
 
@@ -44,8 +43,6 @@ Task taskManager::createTask(){
 	std::cin >> create_note;
 
 	Task temp(create_name, create_deadline, create_reminder, create_location, create_subject, false, create_note);
-
-	general.push_back(temp); 
 	 
 	return temp;
 }
