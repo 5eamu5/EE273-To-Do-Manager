@@ -21,11 +21,12 @@ void wipeFile() {
     }
 }
 
-void savetoFile(vector<Task>& input) {
+void savetoFile(vector<Task>& vec) {
     ofstream file(filename);
     if (file.is_open()) {
-        for (auto i : input) {
-            file << i.getName() << "," << i.getDeadline() << "," << i.getReminder() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() <<  endl;
+        for (Task i : vec) {
+            file << "-Task-" << endl;
+            file << i.toString() << endl;
         }
         cout << "Data Saved" << filename << endl;
         file.close();
