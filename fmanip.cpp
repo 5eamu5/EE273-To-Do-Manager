@@ -21,12 +21,11 @@ void wipeFile() {
     }
 }
 
-void savetoFile(vector<Task>& vec) {
+void savetoFile(vector<Task>& input) {
     ofstream file(filename);
     if (file.is_open()) {
-        for (Task i : vec) {
-            file << "-Task-" << endl;
-            file << i.toString() << endl;
+        for (auto i : input) {
+            file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() <<  endl;
         }
         cout << "Data Saved" << filename << endl;
         file.close();
@@ -52,17 +51,25 @@ void readfromFile(vector<Task>& input) {
             while (getline(iss, info, ',')) {
                 objAttributes.push_back(info);
             }
-            if (objAttributes.size() == 7) {
+            if (objAttributes.size() == 15) {
 
                 string name = objAttributes[0];
-                int deadline = stoi(objAttributes[1]);
-                int reminder = stoi(objAttributes[2]);
-                string location = objAttributes[3];
-                string subject = objAttributes[4];
-                bool urgent = stoi(objAttributes[5]);
-                string note = objAttributes[6];
+                int dhour= stoi(objAttributes[1]);
+                int dmin = stoi(objAttributes[2]);
+                int dday = stoi(objAttributes[3]);
+                int dmonth = stoi(objAttributes[4]);
+                int dyear = stoi(objAttributes[5]);
+                int rhour = stoi(objAttributes[6]);
+                int rmin = stoi(objAttributes[7]);
+                int rday = stoi(objAttributes[8]);
+                int rmonth = stoi(objAttributes[9]);
+                int ryear = stoi(objAttributes[10]);
+                string location = objAttributes[11];
+                string subject = objAttributes[12];
+                bool urgent = stoi(objAttributes[13]);
+                string note = objAttributes[14];
 
-                Task temp(name, deadline, reminder, location, subject, urgent, note);
+                Task temp(name, dhour, dmin, dday, dmonth, dyear, rhour, rmin, rday, rmonth, ryear, location, subject, urgent, note);
                 input.push_back(temp);
             }
         }
@@ -70,7 +77,4 @@ void readfromFile(vector<Task>& input) {
     else {
         cout << "Error: Unable to open file." << endl;
     }
-
-    // Close the file
-    file.close();
 }
