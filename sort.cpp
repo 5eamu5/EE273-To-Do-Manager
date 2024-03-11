@@ -14,7 +14,7 @@ void viewTasks(std::vector<Task>& general) {
 		std::cout << std::endl;
 	}
 }
-void printMethod() {
+void printMethods() {
 	std::cout << "1. Name" << std::endl;
 	std::cout << "2. Deadline" << std::endl;
 	std::cout << "3, Reminder" << std::endl;
@@ -26,7 +26,7 @@ void printMethod() {
 int selectMethodToSort() {
 	int selected_method;
 	std::cout << std:: endl << "Please select a Method to Sort: " << std::endl;
-	printMethod(); 
+	printMethods(); 
 	std::cin >> selected_method;
 	return selected_method;
 }
