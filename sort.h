@@ -2,6 +2,13 @@
 
 class Task;
 
+
+void viewTasks(std::vector<Task>& general);
+
+int selectMethodToSort();
+void printMethods();
+
+
 bool compareName(Task& prev, Task& next);
 bool compareDeadline(Task& prev, Task& next);
 bool compareLocation(Task& prev, Task& next);
