@@ -5,11 +5,11 @@
 #include "taskManager.h"
 #include "consoleUI.h"
 #include "fmanip.h"
-#include "taskManager.h"
 
 using namespace std;
 taskManager task_manager;
-std::vector<Task> general = task_manager.pushGeneral();
+std::vector<Task> general;
+//std::vector<Task> general = task_manager.pushGeneral();
 bool start = false;
 
 void contents() {
@@ -29,8 +29,9 @@ void contents() {
 	std::cout << "3. view & sort tasks" << endl;
 	std::cout << "4. delete task" << endl << endl; //needs functionality {see editTask()}
 
-	std::cout << "Press 's' to save" << endl; //needs functionality
-	std::cout << "Press 'q' to quit" << endl; //needs funcitonality
+	std::cout << "Press 'w' to wipe file (dev)" << endl;
+	std::cout << "Press 's' to save" << endl;
+	std::cout << "Press 'q' to quit" << endl;
 
 	lowerDivider();
 
@@ -40,10 +41,14 @@ void contents() {
 		exit(0);
 	}
 	else if (contents_input == "s") {
-		task_manager.pushGeneral();
+		//task_manager.pushGeneral();
 		savetoFile(general);
-		contents();
+		returnToContents();
 	}	
+	else if (contents_input == "w") {
+		wipeFile();
+		returnToContents();
+	}
 	int contents_input_int = std::stoi(contents_input);
 
 	//need to catch false inputs here
@@ -58,7 +63,7 @@ void contents() {
 			editTaskUI();
 			break;
 		case 3:
-			deleteTaskUI();
+			sortTaskUI();
 			break;
 		default:
 			std::cout << "please enter an integer between 1 and 4 to represent the desired function" << endl;
@@ -87,7 +92,7 @@ void editTaskUI() {
 	upperDivider();
 
 	std::cout << "-EDIT A TASK-" << endl;
-	Task temp = task_manager.editTask();
+	Task temp = task_manager.editTask(general);
 	std::cout << "\n" << temp.toString() << std::endl;
 	general.push_back(temp);
 	returnToEdit();
@@ -96,13 +101,18 @@ void editTaskUI() {
 
 }
 
-//everything above finished
-//nothing below started yet 
 
 void sortTaskUI() {
+	//sort tasks needs to show all tasks first, and then allow sorting
 
+	upperDivider();
+
+	std::cout << "-SORT A TASK-" << endl;
+	task_manager.sortTask(general);
+
+	lowerDivider();
+	
 }
-
 void UIsortName() {
 
 }
@@ -119,11 +129,9 @@ void UIsortUrgent() {
 
 }
 
-
 void deleteTaskUI() {
 
 }
-
 void selectTaskToDelete() {
 
 }
@@ -152,7 +160,6 @@ void returnToContents() {
 		exit(0);
 	}
 }
-
 void returnToEdit() {
 	char return_to_edit;
 
