@@ -37,6 +37,7 @@ std::string Task::toString() {
 	return ss.str();
 }
 
+
 //setters and getters
 std::string Task::getName(){
 	return Name;
