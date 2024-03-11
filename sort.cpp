@@ -6,6 +6,30 @@
 #include "task.h"
 
 using namespace std;
+void viewTasks(std::vector<Task>& general) {
+	std::cout << "All Tasks: " << std::endl;
+	for (Task t : general) {
+		std::cout << "-Task-" << std::endl;
+		std::cout << t.toString();
+		std::cout << std::endl;
+	}
+}
+void printMethod() {
+	std::cout << "1. Name" << std::endl;
+	std::cout << "2. Deadline" << std::endl;
+	std::cout << "3, Reminder" << std::endl;
+	std::cout << "4. Location" << std::endl;
+	std::cout << "5. Subject" << std::endl;
+	std::cout << "6. Marked as Urgent" << std::endl;
+}
+
+int selectMethodToSort() {
+	int selected_method;
+	std::cout << std:: endl << "Please select a Method to Sort: " << std::endl;
+	printMethod(); 
+	std::cin >> selected_method;
+	return selected_method;
+}
 
 //all functions for sorting tasks by member
 bool compareName(Task& prev, Task& next) {
