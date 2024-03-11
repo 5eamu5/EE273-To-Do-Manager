@@ -2,7 +2,13 @@
 #include <string>
 #include <vector>
 #include "taskManager.h"
-#include "task.h"
+#include "task.h" 
+//all the functionality for each taskmanager function is in the following files
+//like a music mixer, everything goes through the task manager, but it doesnt actually do any of the functions
+#include "create.h"
+#include "edit.h"
+#include "sort.h"
+#include "delete_.h"
 
 taskManager::taskManager() {
 
@@ -14,9 +20,9 @@ taskManager::~taskManager() {
 
 }
  
-std::vector<Task> taskManager::pushGeneral() {
-	return general;  
-}
+//std::vector<Task> taskManager::pushGeneral() {
+	//return general;  
+//}
 
 //general manager
 //they take in a vector so that they can interact with the global vector
@@ -46,10 +52,14 @@ Task taskManager::createTask(){
 	 
 	return temp;
 }
-Task taskManager::editTask() {
+
+Task taskManager::editTask(std::vector<Task> &general) {
 	int edit_input;
-	int index_response = selectTaskToEdit(general);
-	Task temp = general[index_response];
+	int selected_task_edit = selectTaskToEdit(general) - 1;
+	
+	//creates a copy of the task being edited and then erases the origional task
+	Task temp = general[selected_task_edit];
+	general.erase(general.begin() + selected_task_edit);
 
 	std::cout << "You have selected task: " << temp.getName() << std::endl;
 	std::cout << "Select an element to edit: " << std::endl << temp.toString() << std::endl;
@@ -80,91 +90,42 @@ Task taskManager::editTask() {
 	}
 	return temp;
 }
-Task taskManager::sortTask(std::vector<Task> vec) {
-	Task temp;
-	return temp;
+
+std::vector<Task> taskManager::sortTask(std::vector<Task> general) {
+	
+	viewTasks(general);
+
+	int selected_method = selectMethodToSort() - 1; 
+
+	switch (selected_method) {
+	case 1:
+		std::cout << "Sorted by name: " << std::endl;
+		vecSortName(general);
+		break;
+	case 2:
+		std::cout << "Sorted by deadline: " << std::endl;
+		vecSortDeadline(general);
+		break;
+	case 3:
+		std::cout << "Sorted by reminder: " << std::endl;
+		vecSortReminder(general);
+		break;
+	case 4:
+		std::cout << "Sorted by location: " << std::endl;
+		vecSortLocation(general);
+		break;
+	case 5:
+		std::cout << "Sorted by marked as urgent: " << std::endl;
+		vecSortUrgent(general);
+		break;
+	}
+	return general;
 }
-Task taskManager::deleteTask(std::vector<Task> vec) {
+Task taskManager::deleteTask(std::vector<Task> &general) {
 	Task temp;
 	return temp;
 }
 
 //editing manager
-int taskManager::selectTaskToEdit(std::vector<Task> vec) {
-	int index_response;
 
-	std::cout << "Please select a Task to edit: " << std::endl;
-
-	for (int i{ 0 }; i < general.size(); i++) { 
-		std::cout << "Task " << i << ". " << general[i].getName() << std::endl;
-	}
-	std::cin >> index_response; 
-
-	return index_response; 
-}
-
-void taskManager::editName(Task temp) {
-	std::string edit_name;
-
-	std::cout << "Current Name: " << temp.getName() << std::endl;
-	std::cout << "Enter task new name: ";
-	std::cin >> edit_name;
-	temp.setName(edit_name);
-	std::cout << std::endl;
-	std::cout << "New Task Name: " << temp.getName();
-}
-void taskManager::editDeadline(Task temp) {
-	int edit_deadline;
-
-	std::cout << "Current Deadline: " << temp.getName() << std::endl;
-	std::cout << "Enter task new Deadline: ";
-	std::cin >> edit_deadline;
-	temp.setDeadline(edit_deadline);
-	std::cout << "New Task Deadline: " << temp.getDeadline();
-}
-void taskManager::editReminder(Task temp) {
-	int edit_reminder;
-
-	std::cout << "Current Reminder: " << temp.getName() << std::endl;
-	std::cout << "Enter task new Reminder: ";
-	std::cin >> edit_reminder;
-	temp.setReminder(edit_reminder);
-	std::cout << "New Task Reminder: " << temp.getReminder();
-}
-void taskManager::editLocation(Task temp) {
-	std::string edit_location;
-
-	std::cout << "Current Location: " << temp.getName() << std::endl;
-	std::cout << "Enter task new Location: ";
-	std::cin >> edit_location;
-	temp.setLocation(edit_location);
-	std::cout << "New Task Location: " << temp.getLocation();
-}
-void taskManager::editSubject(Task temp) {
-	std::string edit_subject;
-
-	std::cout << "Current Subject: " << temp.getName() << std::endl;
-	std::cout << "Enter task new Subject: ";
-	std::cin >> edit_subject;
-	temp.setSubject(edit_subject);
-	std::cout << "New Task Subject: " << temp.getSubject();
-}
-void taskManager::editNote(Task temp) {
-	std::string edit_note;
-
-	std::cout << "Current Note: " << temp.getName() << std::endl;
-	std::cout << "Enter task new Note: ";
-	std::cin >> edit_note;
-	temp.setNote(edit_note);
-	std::cout << "New Task Note: " << temp.getNote();
-}
-void taskManager::editUrgent(Task temp) {
-	bool edit_urgent;
-
-	std::cout << "Current Urgent: " << temp.getName() << std::endl;
-	std::cout << "Enter task new Urgent: ";
-	std::cin >> edit_urgent;
-	temp.setUrgent(edit_urgent);
-	std::cout << "New Task Urgent: " << temp.getUrgent();
-}
 
