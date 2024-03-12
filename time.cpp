@@ -34,43 +34,45 @@ void updateTime(vector<Task>& input) {
     int iday = stoi(day);
     int imonth = stoi(month);
     int iyear = stoi(year);
+    int taskcount{1};
 
-    for (auto i : input) {
+    for (Task i : input) { 
         if (i.getDyear() < iyear) {
             file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
-            //input delete
+            input.erase(input.begin() + taskcount);
         }
         else if (i.getDyear() > iyear) {
         }
         else {
             if (i.getDmonth() < imonth) {
                 file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
-                //input delete
+                input.erase(input.begin() + taskcount);
             }
             else if (i.getDmonth() > imonth) {
             }
             else {
                 if (i.getDday() < iday) {
                     file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
-                    //input delete
+                    input.erase(input.begin() + taskcount);
                 }
                 else if (i.getDday() > iday) {
                 }
                 else {
                     if (i.getDhour() < ihour) {
                         file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
-                        //input delete
+                        input.erase(input.begin() + taskcount);
                     }
                     else if (i.getDhour() > ihour) {
                     }
                     else {
                         if (i.getDmin() <= imin) {
                             file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
-                            //input delete
+                            input.erase(input.begin() + taskcount);
                         }
                     }
                 }
             }
         }
     }
+    taskcount++;
 }
