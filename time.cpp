@@ -66,7 +66,7 @@ void updateTime(vector<Task>& input) {
                     else {
                         if (i.getDmin() <= imin) {
                             file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
-                            //inout delete
+                            //input delete
                         }
                     }
                 }

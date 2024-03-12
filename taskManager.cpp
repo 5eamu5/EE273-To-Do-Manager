@@ -5,10 +5,10 @@
 #include "task.h" 
 //all the functionality for each taskmanager function is in the following files
 //like a music mixer, everything goes through the task manager, but it doesnt actually do any of the functions
-#include "create.h"
+//#include "create.h"
 #include "edit.h"
 #include "sort.h"
-#include "delete_.h"
+//#include "delete_.h"
 
 taskManager::taskManager() {
 
@@ -28,8 +28,16 @@ taskManager::~taskManager() {
 //they take in a vector so that they can interact with the global vector
 Task taskManager::createTask(){
 	std::string create_name;
-	int create_deadline;
-	int create_reminder;
+	int Dhour;
+	int Dmin;
+	int Dday;
+	int Dmonth;
+	int Dyear;
+	int Rhour;
+	int Rmin;
+	int Rday;
+	int Rmonth;
+	int Ryear;
 	std::string create_location;
 	std::string create_subject;
 	std::string create_note;
@@ -37,10 +45,26 @@ Task taskManager::createTask(){
 	std::cout << "Please enter the following data about your task: " << std::endl;
 	std::cout << "Name: ";
 	std::cin >> create_name;
-	std::cout << "Deadline: ";
-	std::cin >> create_deadline;
-	std::cout << "Reminder: ";
-	std::cin >> create_reminder;
+	std::cout << "Deadline Hour: ";
+	std::cin >> Dhour;
+	std::cout << "Deadline Minute: ";
+	std::cin >> Dmin;
+	std::cout << "Deadline Day of the month: ";
+	std::cin >> Dday;
+	std::cout << "Deadline Month (March = 3, December = 12): ";
+	std::cin >> Dmonth;
+	std::cout << "Deadline Year (eg: 2024): ";
+	std::cin >> Dyear;
+	std::cout << "Reminder Hour: ";
+	std::cin >> Rhour;
+	std::cout << "Reminder Minute: ";
+	std::cin >> Rmin;
+	std::cout << "Reminder Day of the month: ";
+	std::cin >> Rday;
+	std::cout << "Reminder Month (March = 3, December = 12): ";
+	std::cin >> Rmonth;
+	std::cout << "Reminder Year (eg: 2024): ";
+	std::cin >> Ryear;
 	std::cout << "Location: ";
 	std::cin >> create_location;
 	std::cout << "Subject: ";
@@ -48,7 +72,7 @@ Task taskManager::createTask(){
 	std::cout << "Note: ";
 	std::cin >> create_note;
 
-	Task temp(create_name, create_deadline, create_reminder, create_location, create_subject, false, create_note);
+	Task temp(create_name, Dhour, Dmin, Dday, Dmonth, Dyear, Rhour, Rmin, Rday, Rmonth, Ryear, create_location, create_subject, 0, create_note);
 	 
 	return temp;
 }

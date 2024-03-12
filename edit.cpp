@@ -26,21 +26,59 @@ void editName(Task &temp) {
 	std::cout << "New Task Name: " << temp.getName();
 }
 void editDeadline(Task &temp) {
-	int edit_deadline;
+	int Dhour;
+	int Dmin;
+	int Dday;
+	int Dmonth;
+	int Dyear;
 
-	std::cout << "Current Deadline: " << temp.getName() << std::endl;
+	std::cout << "Current Deadline: " << temp.getDeadline() << std::endl;
 	std::cout << "Enter task new Deadline: ";
-	std::cin >> edit_deadline;
-	temp.setDeadline(edit_deadline);
+	std::cout << "Deadline Hour: ";
+	std::cin >> Dhour;
+	std::cout << "Deadline Minute: ";
+	std::cin >> Dmin;
+	std::cout << "Deadline Day of the month: ";
+	std::cin >> Dday;
+	std::cout << "Deadline Month (March = 3, December = 12): ";
+	std::cin >> Dmonth;
+	std::cout << "Deadline Year (eg: 2024): ";
+	std::cin >> Dyear;
+
+	temp.setDhour(Dhour);
+	temp.setDmin(Dhour);
+	temp.setDday(Dhour);
+	temp.setDmonth(Dhour);
+	temp.setDyear(Dhour);
+
 	std::cout << "New Task Deadline: " << temp.getDeadline();
 }
 void editReminder(Task &temp) {
-	int edit_reminder;
+	int Rhour;
+	int Rmin;
+	int Rday;
+	int Rmonth;
+	int Ryear;
 
-	std::cout << "Current Reminder: " << temp.getName() << std::endl;
+	std::cout << "Current Reminder: " << temp.getReminder() << std::endl;
 	std::cout << "Enter task new Reminder: ";
-	std::cin >> edit_reminder;
-	temp.setReminder(edit_reminder);
+	std::cout << "Reminder Hour: ";
+	std::cin >> Rhour;
+	std::cout << "Reminder Minute: ";
+	std::cin >> Rmin;
+	std::cout << "Reminder Day of the month: ";
+	std::cin >> Rday;
+	std::cout << "Reminder Month (March = 3, December = 12): ";
+	std::cin >> Rmonth;
+	std::cout << "Reminder Year (eg: 2024): ";
+	std::cin >> Ryear;
+
+	temp.setRhour(Rhour);
+	temp.setRmin(Rhour);
+	temp.setRday(Rhour);
+	temp.setRmonth(Rhour);
+	temp.setRyear(Rhour);
+
 	std::cout << "New Task Reminder: " << temp.getReminder();
 }
 void editLocation(Task &temp) {

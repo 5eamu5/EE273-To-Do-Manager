@@ -5,6 +5,7 @@
 #include "taskManager.h"
 #include "consoleUI.h"
 #include "fmanip.h"
+#include "time.h"
 
 using namespace std;
 taskManager task_manager;
@@ -16,6 +17,7 @@ void contents() {
 
 	if (start == false) {
 		readfromFile(general);
+		updateTime(general);
 		start = true;
 	}
 	std::string contents_input;

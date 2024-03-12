@@ -36,10 +36,72 @@ bool compareName(Task& prev, Task& next) {
 	return prev.getName() < next.getName();
 }
 bool compareDeadline(Task& prev, Task& next) {
-	return prev.getDeadline() < next.getDeadline();
+    if (prev.getDyear() < next.getDyear()) {
+        return 1;
+    }
+    else if (prev.getDyear() > next.getDyear()) {
+    }
+    else {
+        if (prev.getDmonth() < next.getDmonth()) {
+            return 1;
+        }
+        else if (prev.getDmonth() > next.getDmonth()) {
+        }
+        else {
+            if (prev.getDday() < next.getDday()) {
+                return 1;
+            }
+            else if (prev.getDday() > next.getDday()) {
+            }
+            else {
+                if (prev.getDhour() < next.getDhour()) {
+                    return 1;
+                }
+                else if (prev.getDday() > next.getDday()) {
+                }
+                else {
+                    if (prev.getDmin() < next.getDmin()) {
+                        return 1;
+                    }
+                }
+            }
+        }
+    }
 }
+
+
 bool compareReminder(Task& prev, Task& next) {
-	return prev.getReminder() < next.getReminder();
+    if (prev.getRyear() < next.getRyear()) {
+        return 1;
+    }
+    else if (prev.getRyear() > next.getRyear()) {
+    }
+    else {
+        if (prev.getRmonth() < next.getRmonth()) {
+            return 1;
+        }
+        else if (prev.getRmonth() > next.getRmonth()) {
+        }
+        else {
+            if (prev.getRday() < next.getRday()) {
+                return 1;
+            }
+            else if (prev.getRday() > next.getRday()) {
+            }
+            else {
+                if (prev.getRhour() < next.getRhour()) {
+                    return 1;
+                }
+                else if (prev.getRday() > next.getRday()) {
+                }
+                else {
+                    if (prev.getRmin() < next.getRmin()) {
+                        return 1;
+                    }
+                }
+            }
+        }
+    }
 }
 bool compareLocation(Task& prev, Task& next) {
 	return prev.getLocation() < next.getLocation();

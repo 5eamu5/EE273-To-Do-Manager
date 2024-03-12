@@ -52,6 +52,11 @@ std::string Task::getName(){
 std::string Task::getNote() {
 	return Note;
 }
+std::string Task::getDeadline() {
+	std::stringstream deadline;
+	deadline << getDhour() << ":" << getDmin() << " " << getDday() << "/" << getDmonth() << "/" << getDyear();
+	return deadline.str();
+}
 int Task::getDhour() {
 	return Dhour;
 }
@@ -66,6 +71,11 @@ int Task::getDmonth() {
 }
 int Task::getDyear() {
 	return Dyear;
+}
+std::string Task::getReminder() {
+	std::stringstream reminder;
+	reminder << getRhour() << ":" << getRmin() << " " << getRday() << "/" << getRmonth() << "/" << getRyear();
+	return reminder.str();
 }
 int Task::getRhour() {
 	return Rhour;
