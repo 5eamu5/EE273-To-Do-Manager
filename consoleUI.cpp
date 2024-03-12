@@ -48,7 +48,7 @@ void contents() {
 		returnToContents();
 	}	
 	else if (contents_input == "w") {
-		wipeFile();
+		wipeFile(general);
 		returnToContents();
 	}
 	int contents_input_int = std::stoi(contents_input);

@@ -10,9 +10,9 @@ using namespace std;
 
 string const filename = "savedata.txt";
 
-void wipeFile() {
+void wipeFile(vector<Task>& input) {
     ofstream file(filename, std::ofstream::trunc);
-
+    input.clear();
     if (file.is_open()) {
         file.close();
     }

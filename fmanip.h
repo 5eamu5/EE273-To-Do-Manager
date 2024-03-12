@@ -3,7 +3,7 @@ using namespace std;
 
 class Task;
 
-void wipeFile();
+void wipeFile(vector<Task>& input);
 
 void savetoFile(std::vector<Task>& input);
 
