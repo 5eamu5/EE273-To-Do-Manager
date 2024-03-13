@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "task.h" 
 #include "taskManager.h"
 #include "consoleUI.h"
@@ -10,7 +11,6 @@
 using namespace std;
 taskManager task_manager;
 std::vector<Task> general;
-//std::vector<Task> general = task_manager.pushGeneral();
 bool start = false;
 
 void contents() {
@@ -29,7 +29,7 @@ void contents() {
 	std::cout << "1. create task" << endl;
 	std::cout << "2. edit task" << endl;
 	std::cout << "3. view & sort tasks" << endl;
-	std::cout << "4. delete task" << endl << endl; //needs functionality {see editTask()}
+	std::cout << "4. delete task" << endl << endl; 
 
 	std::cout << "Press 'w' to wipe file (dev)" << endl;
 	std::cout << "Press 's' to save" << endl;
@@ -67,6 +67,9 @@ void contents() {
 		case 3:
 			sortTaskUI();
 			break;
+		case 4:
+			deleteTaskUI();
+			break;
 		default:
 			std::cout << "please enter an integer between 1 and 4 to represent the desired function" << endl;
 			contents();
@@ -89,13 +92,13 @@ void createTaskUI() {
 	lowerDivider(); 
 
 }
+
 void editTaskUI() {
 
 	upperDivider();
 
 	std::cout << "-EDIT A TASK-" << endl;
 	Task temp = task_manager.editTask(general);
-	std::cout << "\n" << temp.toString() << std::endl;
 	general.push_back(temp);
 	returnToEdit();
 
@@ -103,55 +106,38 @@ void editTaskUI() {
 
 }
 
-
 void sortTaskUI() {
-	//sort tasks needs to show all tasks first, and then allow sorting
 
 	upperDivider();
-
 	std::cout << "-SORT A TASK-" << endl;
 	task_manager.sortTask(general);
-
+	returnToSort();
 	lowerDivider();
 	
-}
-void UIsortName() {
-
-}
-void UIsortDeadline() {
-
-}
-void UIsortLocation() {
-
-}
-void UIsortSubject() {
-
-}
-void UIsortUrgent() {
-
 }
 
 void deleteTaskUI() {
 
-}
-void selectTaskToDelete() {
-
+	upperDivider();
+	std::cout << "-DELETE A TASK-" << std::endl;
+	task_manager.deleteTask(general); 
+	lowerDivider();
 }
 
 void returnToContents() {
 	char return_to_contents;
 
-	std::cout << std::string(10, '-') << std::string(2, '\n');
+	upperDivider();
 
 	std::cout << "anything else?: " << std::endl;
 	std::cout << "y / n" << std::endl;
-	std::cout << std::string(2, '\n') << std::string(10, '-') << std::string(2, '\n');
+
+	lowerDivider();
 
 	std::cin >> return_to_contents;
 
 	while (return_to_contents != 'y' && return_to_contents != 'n') {
-		std::cout << "y / n" << std::endl;
-		std::cout << std::string(10, '-') << std::string(2, '\n');
+		std::cout << "y / n: " << std::endl;
 		std::cin >> return_to_contents;
 	}
 	if (return_to_contents == 'y') {
@@ -165,31 +151,74 @@ void returnToContents() {
 void returnToEdit() {
 	char return_to_edit;
 
-	std::cout << std::string(10, '-') << std::string(2, '\n');
+	upperDivider();
 
 	std::cout << "edit anything else?: " << std::endl;
 	std::cout << "y / n" << std::endl;
-	std::cout << std::string(2, '\n') << std::string(10, '-') << std::string(2, '\n');
+
+	lowerDivider();
 
 	std::cin >> return_to_edit;
 
 	while (return_to_edit != 'y' && return_to_edit != 'n') {
-		std::cout << "y / n" << std::endl;
-		std::cout << std::string(10, '-') << std::string(2, '\n');
+		std::cout << "y / n: " << std::endl;
 		std::cin >> return_to_edit;
 	}
 	if (return_to_edit == 'y') {
 		editTaskUI();
 	}
 	else {
+		savetoFile(general);
 		contents();
 	}
 }
 void returnToSort() {
+	char return_to_sort;
 
+	upperDivider();
+
+	std::cout << "sort anything else?: " << std::endl;
+	std::cout << "y / n" << std::endl;
+
+	lowerDivider();
+
+	std::cin >> return_to_sort;
+
+	while (return_to_sort != 'y' && return_to_sort != 'n') {
+		std::cout << "y / n: " << std::endl;
+		std::cin >> return_to_sort;
+	}
+	if (return_to_sort == 'y') {
+		sortTaskUI();
+	}
+	else {
+		savetoFile(general);
+		contents();
+	}
 }
 void returnToDelete() {
+	char return_to_delete;
 
+	upperDivider();
+
+	std::cout << "delete anything else?: " << std::endl;
+	std::cout << "y / n" << std::endl;
+
+	lowerDivider();
+
+	std::cin >> return_to_delete;
+
+	while (return_to_delete != 'y' && return_to_delete != 'n') {
+		std::cout << "y / n: " << std::endl;
+		std::cin >> return_to_delete;
+	}
+	if (return_to_delete == 'y') {
+		deleteTaskUI();
+	}
+	else {
+		savetoFile(general);
+		contents();
+	}
 }
 
 void upperDivider() {
