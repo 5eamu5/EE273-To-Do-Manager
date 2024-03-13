@@ -14,18 +14,21 @@ public:
 	//Getters
 	std::string getName();
 	std::string getNote();
+
 	std::string getDeadline();
 	int getDhour();
 	int getDmin();
 	int getDday();
 	int getDmonth();
 	int getDyear();
+
 	std::string getReminder();
 	int getRhour();
 	int getRmin();
 	int getRday();
 	int getRmonth();
 	int getRyear();
+
 	std::string getLocation();
 	std::string getSubject();
 	bool getUrgent();
