@@ -34,7 +34,7 @@ void updateTime(vector<Task>& input) {
     int iday = stoi(day);
     int imonth = stoi(month);
     int iyear = stoi(year);
-    int taskcount{1};
+    int taskcount{0};
 
     for (Task i : input) { 
         if (i.getDyear() < iyear) {
