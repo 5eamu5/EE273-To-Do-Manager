@@ -151,9 +151,7 @@ void reminderMessage(Task input) {
     cout << "Deadline: "<< input.getDeadline() << endl;
     cout << "Note:     " << input.getNote() << endl;
     cout << "============================================" << endl;
-    cout << "              Press Y to dismiss            " << endl;
+    cout << "          Enter anything to dismiss        " << endl;
     cin >> x;
-    while (x != "Y" || x != "y") {
-        cin >> x;
-    }
+    cout << endl;
 }
