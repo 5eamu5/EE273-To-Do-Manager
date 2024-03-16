@@ -18,6 +18,7 @@ void contents() {
 	if (start == false) {
 		readfromFile(general);
 		updateTime(general);
+		reminderCheck(general);
 		start = true;
 	}
 	std::string contents_input;

@@ -78,3 +78,47 @@ void readfromFile(vector<Task>& input) {
         cout << "Error: Unable to open file." << endl;
     }
 }
+
+void readfromFile(vector<Task>& input, string filename) {
+
+    ifstream file(filename);
+    if (file.is_open()) {
+
+        // Read data from the file and input into class objects
+        std::string line;
+        while (getline(file, line)) {
+
+            istringstream iss(line);
+            std::string info;
+            vector<std::string> objAttributes;
+
+            while (getline(iss, info, ',')) {
+                objAttributes.push_back(info);
+            }
+            if (objAttributes.size() == 15) {
+
+                string name = objAttributes[0];
+                int dhour = stoi(objAttributes[1]);
+                int dmin = stoi(objAttributes[2]);
+                int dday = stoi(objAttributes[3]);
+                int dmonth = stoi(objAttributes[4]);
+                int dyear = stoi(objAttributes[5]);
+                int rhour = stoi(objAttributes[6]);
+                int rmin = stoi(objAttributes[7]);
+                int rday = stoi(objAttributes[8]);
+                int rmonth = stoi(objAttributes[9]);
+                int ryear = stoi(objAttributes[10]);
+                string location = objAttributes[11];
+                string subject = objAttributes[12];
+                bool urgent = stoi(objAttributes[13]);
+                string note = objAttributes[14];
+
+                Task temp(name, dhour, dmin, dday, dmonth, dyear, rhour, rmin, rday, rmonth, ryear, location, subject, urgent, note);
+                input.push_back(temp);
+            }
+        }
+    }
+    else {
+        cout << "Error: Unable to open file." << endl;
+    }
+}

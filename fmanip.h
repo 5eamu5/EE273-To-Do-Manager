@@ -8,3 +8,5 @@ void wipeFile(vector<Task>& input);
 void savetoFile(std::vector<Task>& input);
 
 void readfromFile(std::vector<Task>& input);
+
+void readfromFile(vector<Task>& input, string filename);
