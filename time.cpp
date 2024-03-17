@@ -40,6 +40,7 @@ void updateTime(vector<Task>& input) {
         if (i.getDyear() < iyear) {
             file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
             input.erase(input.begin() + taskcount);
+            overdueMessage(i);
         }
         else if (i.getDyear() > iyear) {
         }
@@ -47,6 +48,7 @@ void updateTime(vector<Task>& input) {
             if (i.getDmonth() < imonth) {
                 file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
                 input.erase(input.begin() + taskcount);
+                overdueMessage(i);
             }
             else if (i.getDmonth() > imonth) {
             }
@@ -54,6 +56,7 @@ void updateTime(vector<Task>& input) {
                 if (i.getDday() < iday) {
                     file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
                     input.erase(input.begin() + taskcount);
+                    overdueMessage(i);
                 }
                 else if (i.getDday() > iday) {
                 }
@@ -61,6 +64,7 @@ void updateTime(vector<Task>& input) {
                     if (i.getDhour() < ihour) {
                         file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
                         input.erase(input.begin() + taskcount);
+                        overdueMessage(i);
                     }
                     else if (i.getDhour() > ihour) {
                     }
@@ -68,6 +72,7 @@ void updateTime(vector<Task>& input) {
                         if (i.getDmin() <= imin) {
                             file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
                             input.erase(input.begin() + taskcount);
+                            overdueMessage(i);
                         }
                         else {
 
@@ -148,7 +153,24 @@ void reminderMessage(Task input) {
     cout << "============================================" << endl;
     cout << "             Task Reminder Alert            " << endl;
     cout << "Name:     " << input.getName() << endl;
-    cout << "Deadline: "<< input.getDeadline() << endl;
+    cout << "Deadline: " << input.getDeadline() << endl;
+    cout << "Subject:  " << input.getSubject() << endl;
+    cout << "Location: " << input.getLocation() << endl;
+    cout << "Note:     " << input.getNote() << endl;
+    cout << "============================================" << endl;
+    cout << "          Enter anything to dismiss        " << endl;
+    cin >> x;
+    cout << endl;
+}
+
+void overdueMessage(Task input) {
+    string x = "";
+    cout << "============================================" << endl;
+    cout << "             Task Overdue Alert            " << endl;
+    cout << "Name:     " << input.getName() << endl;
+    cout << "Deadline: " << input.getDeadline() << endl;
+    cout << "Subject:  " << input.getSubject() << endl;
+    cout << "Location: " << input.getLocation() << endl;
     cout << "Note:     " << input.getNote() << endl;
     cout << "============================================" << endl;
     cout << "          Enter anything to dismiss        " << endl;
