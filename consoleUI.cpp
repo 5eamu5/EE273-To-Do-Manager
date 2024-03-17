@@ -122,6 +122,7 @@ void deleteTaskUI() {
 	upperDivider();
 	std::cout << "-DELETE A TASK-" << std::endl;
 	task_manager.deleteTask(general); 
+	returnToEdit();
 	lowerDivider();
 }
 
