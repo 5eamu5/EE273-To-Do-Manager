@@ -31,16 +31,8 @@ void printVector(std::vector<Task> vec, std::vector<Task> overdue) {
 //creating
 Task taskManager::createTask() {
 	std::string create_name;
-	int Dhour;
-	int Dmin;
-	int Dday;
-	int Dmonth;
-	int Dyear;
-	int Rhour;
-	int Rmin;
-	int Rday;
-	int Rmonth;
-	int Ryear;
+	struct tm crea_deadline;
+	struct tm crea_reminder;
 	std::string create_location;
 	std::string create_subject;
 	std::string create_note;
@@ -49,25 +41,25 @@ Task taskManager::createTask() {
 	std::cout << "Name: ";
 	std::cin >> create_name;
 	std::cout << "Deadline Hour: ";
-	std::cin >> Dhour;
+	std::cin >> crea_deadline.tm_hour;
 	std::cout << "Deadline Minute: ";
-	std::cin >> Dmin;
+	std::cin >> crea_deadline.tm_min;
 	std::cout << "Deadline Day of the month: ";
-	std::cin >> Dday;
+	std::cin >> crea_deadline.tm_mday;
 	std::cout << "Deadline Month (March = 3, December = 12): ";
-	std::cin >> Dmonth;
+	std::cin >> crea_deadline.tm_mon;
 	std::cout << "Deadline Year (eg: 2024): ";
-	std::cin >> Dyear;
+	std::cin >> crea_deadline.tm_year;
 	std::cout << "Reminder Hour: ";
-	std::cin >> Rhour;
+	std::cin >> crea_reminder.tm_hour;
 	std::cout << "Reminder Minute: ";
-	std::cin >> Rmin;
+	std::cin >> crea_reminder.tm_min;
 	std::cout << "Reminder Day of the month: ";
-	std::cin >> Rday;
+	std::cin >> crea_reminder.tm_mday;
 	std::cout << "Reminder Month (March = 3, December = 12): ";
-	std::cin >> Rmonth;
+	std::cin >> crea_reminder.tm_mon;
 	std::cout << "Reminder Year (eg: 2024): ";
-	std::cin >> Ryear;
+	std::cin >> crea_reminder.tm_year;
 	std::cout << "Location: ";
 	std::cin >> create_location;
 	std::cout << "Subject: ";
@@ -75,7 +67,7 @@ Task taskManager::createTask() {
 	std::cout << "Note: ";
 	std::cin >> create_note;
 
-	Task temp(create_name, Dhour, Dmin, Dday, Dmonth, Dyear, Rhour, Rmin, Rday, Rmonth, Ryear, create_location, create_subject, 0, create_note);
+	Task temp(create_name, crea_deadline, crea_reminder , create_location, create_subject, 0, create_note);
 
 	return temp;
 }
@@ -143,60 +135,44 @@ void editName(Task& temp) {
 	std::cout << "New Task Name: " << temp.getName();
 }
 void editDeadline(Task& temp) {
-	int edit_Dhour;
-	int edit_Dmin;
-	int edit_Dday;
-	int edit_Dmonth;
-	int edit_Dyear;
+	struct tm func_deadline;
 
-	std::cout << "Current Deadline: " << temp.getDeadline() << std::endl;
+	std::cout << "Current Deadline: " << temp.disDeadline() << std::endl;
 	std::cout << "Enter task new Deadline: ";
 	std::cout << "Deadline Hour: ";
-	std::cin >> edit_Dhour;
+	std::cin >> func_deadline.tm_hour;
 	std::cout << "Deadline Minute: ";
-	std::cin >> edit_Dmin;
+	std::cin >> func_deadline.tm_min;
 	std::cout << "Deadline Day of the month: ";
-	std::cin >> edit_Dday;
+	std::cin >> func_deadline.tm_mday;
 	std::cout << "Deadline Month (March = 3, December = 12): ";
-	std::cin >> edit_Dmonth;
+	std::cin >> func_deadline.tm_mon;
 	std::cout << "Deadline Year (eg: 2024): ";
-	std::cin >> edit_Dyear;
+	std::cin >> func_deadline.tm_year;
 
-	temp.setDhour(edit_Dhour);
-	temp.setDmin(edit_Dmin);
-	temp.setDday(edit_Dday);
-	temp.setDmonth(edit_Dmonth);
-	temp.setDyear(edit_Dyear);
+	temp.setDeadline(func_deadline); 
 
-	std::cout << "New Task Deadline: " << temp.getDeadline();
+	std::cout << "New Task Deadline: " << temp.disDeadline();  
 }
 void editReminder(Task& temp) {
-	int edit_Rhour;
-	int edit_Rmin;
-	int edit_Rday;
-	int edit_Rmonth;
-	int edit_Ryear;
+	struct tm func_reminder;
 
-	std::cout << "Current Reminder: " << temp.getReminder() << std::endl;
+	std::cout << "Current Reminder: " << temp.disReminder() << std::endl;
 	std::cout << "Enter task new Reminder: ";
 	std::cout << "Reminder Hour: ";
-	std::cin >> edit_Rhour;
+	std::cin >> func_reminder.tm_hour;
 	std::cout << "Reminder Minute: ";
-	std::cin >> edit_Rmin;
+	std::cin >> func_reminder.tm_min;
 	std::cout << "Reminder Day of the month: ";
-	std::cin >> edit_Rday;
+	std::cin >> func_reminder.tm_mday;
 	std::cout << "Reminder Month (March = 3, December = 12): ";
-	std::cin >> edit_Rmonth;
+	std::cin >> func_reminder.tm_mon;
 	std::cout << "Reminder Year (eg: 2024): ";
-	std::cin >> edit_Ryear;
+	std::cin >> func_reminder.tm_year;
 
-	temp.setRhour(edit_Rhour);
-	temp.setRmin(edit_Rmin);
-	temp.setRday(edit_Rday);
-	temp.setRmonth(edit_Rmonth);
-	temp.setRyear(edit_Ryear);
+	temp.setReminder(func_reminder);
 
-	std::cout << "New Task Reminder: " << temp.getReminder();
+	std::cout << "New Task Reminder: " << temp.disDeadline();
 }
 void editLocation(Task& temp) {
 	std::string edit_location;
@@ -239,8 +215,8 @@ void editUrgent(Task& temp) {
 void taskManager::sortTask(std::vector<Task> general, std::vector<Task> overdue_tasks) {
 
 	std::vector<Task> sorted_name = vecSortName(general);
-	//std::vector<Task> sorted_deadline = vecSortDeadline(general);
-	//std::vector<Task> sorted_reminder = vecSortReminder(general);
+	std::vector<Task> sorted_deadline = vecSortDeadline(general);
+	std::vector<Task> sorted_reminder = vecSortReminder(general);
 	std::vector<Task> sorted_location = vecSortLocation(general);
 	std::vector<Task> sorted_urgent = vecSortUrgent(general);
 
@@ -251,16 +227,16 @@ void taskManager::sortTask(std::vector<Task> general, std::vector<Task> overdue_
 	switch (selected_method) {
 	case 1:
 		std::cout << "Sorted by name: " << std::endl;
-		printVector(sorted_name);
+		printVector(sorted_name)
 		break;
-	//case 2:
-	//	std::cout << "Sorted by deadline: " << std::endl;
-	//	printVector(sorted_deadline);
-	//	break;
-	//case 3:
-	//	std::cout << "Sorted by reminder: " << std::endl;
-	//	printVector(sorted_reminder);
-	//	break;
+	case 2:
+		std::cout << "Sorted by deadline: " << std::endl;
+		printVector(sorted_deadline);
+		break;
+	case 3:
+		std::cout << "Sorted by reminder: " << std::endl;
+		printVector(sorted_reminder);
+		break;
 	case 4:
 		std::cout << "Sorted by location: " << std::endl;
 		printVector(sorted_location);
@@ -287,86 +263,12 @@ int selectMethodToSort() {
 bool compareName(Task& prev, Task& next) {
 	return prev.getName() < next.getName();
 }
-//bool compareDeadline(Task& prev, Task& next) {
-//	if (prev.getDyear() < next.getDyear()) {
-//		return 1;
-//	}
-//	else if (prev.getDyear() > next.getDyear()) {
-//		return 0;
-//	}
-//	else {
-//		if (prev.getDmonth() < next.getDmonth()) {
-//			return 1;
-//		}
-//		else if (prev.getDmonth() > next.getDmonth()) {
-//			return 0;
-//		}
-//		else {
-//			if (prev.getDday() < next.getDday()) {
-//				return 1;
-//			}
-//			else if (prev.getDday() > next.getDday()) {
-//				return 0;
-//			}
-//			else {
-//				if (prev.getDhour() < next.getDhour()) {
-//					return 1;
-//				}
-//				else if (prev.getDday() > next.getDday()) {
-//					return 0;
-//				}
-//				else {
-//					if (prev.getDmin() <= next.getDmin()) {
-//						return 1;
-//					}
-//					else {
-//						return 0;
-//					}
-//				}
-//			}
-//		}
-//	}
-//}
-//bool compareReminder(Task& prev, Task& next) {
-//	if (prev.getRyear() < next.getRyear()) {
-//		return 1;
-//	}
-//	else if (prev.getRyear() > next.getRyear()) {
-//		return 0;
-//	}
-//	else {
-//		if (prev.getRmonth() < next.getRmonth()) {
-//			return 1;
-//		}
-//		else if (prev.getRmonth() > next.getRmonth()) {
-//			return 0;
-//		}
-//		else {
-//			if (prev.getRday() < next.getRday()) {
-//				return 1;
-//			}
-//			else if (prev.getRday() > next.getRday()) {
-//				return 0;
-//			}
-//			else {
-//				if (prev.getRhour() < next.getRhour()) {
-//					return 1;
-//				}
-//				else if (prev.getRday() > next.getRday()) {
-//					return 0;
-//				}
-//				else {
-//					if (prev.getRmin() <= next.getRmin()) {
-//						return 1;
-//					}
-//					else {
-//						return 0;
-//					}
-//				}
-//			}
-//		}
-//	}
-//}
+bool compareDeadline(Task& prev, Task& next) {
+	return prev.unixDeadline() < next.unixDeadline();
+}
+bool compareReminder(Task& prev, Task& next) {
+	return prev.unixReminder() < next.unixReminder();
+}
 bool compareLocation(Task& prev, Task& next) {
 	return prev.getLocation() < next.getLocation();
 }
@@ -381,14 +283,14 @@ std::vector<Task> vecSortName(std::vector<Task>& general) {
 	std::sort(general.begin(), general.end(), compareName);
 	return general;
 }
-//std::vector<Task> vecSortDeadline(std::vector<Task>& general) {
-//	std::sort(general.begin(), general.end(), compareDeadline);
-//	return general;
-//}
-//std::vector<Task> vecSortReminder(std::vector<Task>& general) {
-//	std::sort(general.begin(), general.end(), compareReminder);
-//	return general;
-//}
+std::vector<Task> vecSortDeadline(std::vector<Task>& general) {
+	std::sort(general.begin(), general.end(), compareDeadline);
+	return general;
+}
+std::vector<Task> vecSortReminder(std::vector<Task>& general) {
+	std::sort(general.begin(), general.end(), compareReminder);
+	return general;
+}
 std::vector<Task> vecSortLocation(std::vector<Task>& general) {
 	std::sort(general.begin(), general.end(), compareLocation);
 	return general;

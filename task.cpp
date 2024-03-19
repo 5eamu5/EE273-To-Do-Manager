@@ -4,22 +4,15 @@
 #include <algorithm>
 #include <sstream>
 #include "task.h" 
+#include <ctime>
 
 using namespace std;
 
 //constructors/destructors
-Task::Task(std::string func_name, int func_dhour, int func_dmin, int func_dday, int func_dmonth, int func_dyear, int func_rhour, int func_rmin, int func_rday, int func_rmonth, int func_ryear, std::string func_location, std::string func_subject, bool func_urgent, std::string func_note) {
+Task::Task(std::string func_name, struct tm func_deadline, struct tm func_reminder, std::string func_location, std::string func_subject, bool func_urgent, std::string func_note) {
 	Name = func_name;
-	Dhour = func_dhour;
-	Dmin = func_dmin;
-	Dday = func_dday;
-	Dmonth = func_dmonth;
-	Dyear = func_dyear;
-	Rhour = func_rhour;
-	Rmin = func_rmin;
-	Rday = func_rday;
-	Rmonth = func_rmonth;
-	Ryear = func_ryear;
+	Deadline = func_deadline;
+	Reminder = func_reminder;
 	Location = func_location; 
 	Subject = func_subject; 
 	Urgent = func_urgent; 
@@ -52,46 +45,33 @@ std::string Task::getName(){
 std::string Task::getNote() {
 	return Note;
 }
-std::string Task::getDeadline() {
+
+struct tm Task::getDeadline() {
+	return Deadline;
+}
+time_t Task::unixDeadline() {
+	time_t output = mktime(&Deadline);
+	return output;
+}
+std::string Task::disDeadline() {
 	std::stringstream deadline;
-	deadline << getDhour() << ":" << getDmin() << " " << getDday() << "/" << getDmonth() << "/" << getDyear();
+	deadline << Deadline.tm_hour << ":" << Deadline.tm_min << " " << Deadline.tm_mday << "/" << Deadline.tm_mon << "/" << Deadline.tm_year;
 	return deadline.str();
 }
-int Task::getDhour() {
-	return Dhour;
+
+struct tm Task::getReminder() {
+	return Reminder;
 }
-int Task::getDmin() {
-	return Dmin;
+time_t Task::unixReminder() {
+	time_t output = mktime(&Reminder);
+	return output;
 }
-int Task::getDday() {
-	return Dday;
-}
-int Task::getDmonth() {
-	return Dmonth;
-}
-int Task::getDyear() {
-	return Dyear;
-}
-std::string Task::getReminder() {
+std::string Task::disReminder() {
 	std::stringstream reminder;
-	reminder << getRhour() << ":" << getRmin() << " " << getRday() << "/" << getRmonth() << "/" << getRyear();
+	reminder << Reminder.tm_hour << ":" << Reminder.tm_min << " " << Reminder.tm_mday << "/" << Reminder.tm_mon << "/" << Reminder.tm_year;
 	return reminder.str();
 }
-int Task::getRhour() {
-	return Rhour;
-}
-int Task::getRmin() {
-	return Rmin;
-}
-int Task::getRday() {
-	return Rday;
-}
-int Task::getRmonth() {
-	return Rmonth;
-}
-int Task::getRyear() {
-	return Ryear;
-}
+
 std::string Task::getLocation() {
 	return Location;
 }
@@ -108,35 +88,11 @@ void Task::setName(std::string Name) {
 void Task::setNote(std::string Note) {
 	this->Note = Note;
 }
-void Task::setDhour(int func_dhour) {
-	Dhour = func_dhour;
+void Task::setDeadline(struct tm Deadline) {
+	this->Deadline = Deadline;
 }
-void Task::setDmin(int func_dmin) {
-	Dmin = func_dmin;
-}
-void Task::setDday(int func_dday) {
-	Dday = func_dday;
-}
-void Task::setDmonth(int func_dmonth) {
-	Dmonth = func_dmonth;
-}
-void Task::setDyear(int func_dyear) {
-	Dyear = func_dyear;
-}
-void Task::setRhour(int func_rhour) {
-	Rhour = func_rhour;
-}
-void Task::setRmin(int func_rmin) {
-	Rmin = func_rmin;
-}
-void Task::setRday(int func_rday) {
-	Rday = func_rday;
-}
-void Task::setRmonth(int func_rmonth) {
-	Rmonth = func_rmonth;
-}
-void Task::setRyear(int func_ryear) {
-	Ryear = func_ryear;
+void Task::setReminder(struct tm Reminder) {
+	this->Reminder = Reminder;
 }
 void Task::setLocation(std::string Location) {
 	this->Location = Location;
