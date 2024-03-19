@@ -17,15 +17,19 @@ taskManager::~taskManager() {
 }
 
 //other
-void printVector(std::vector<Task> vec) {
+void printVector(std::vector<Task> vec, std::vector<Task> overdue) {
 	for (Task t : vec) {
-		std::cout << "-Task-" << std::endl;
+		std::cout << "-Tasks-" << std::endl;
+		std::cout << t.toString() << std::endl;
+	}
+	for (Task t : overdue) {
+		std::cout << "-Overdue Tasks-" << std::endl;
 		std::cout << t.toString() << std::endl;
 	}
 }
 
 //creating
-Task taskManager::createTask(){
+Task taskManager::createTask() {
 	std::string create_name;
 	int Dhour;
 	int Dmin;
@@ -72,15 +76,15 @@ Task taskManager::createTask(){
 	std::cin >> create_note;
 
 	Task temp(create_name, Dhour, Dmin, Dday, Dmonth, Dyear, Rhour, Rmin, Rday, Rmonth, Ryear, create_location, create_subject, 0, create_note);
-	 
+
 	return temp;
 }
 
 //editing
-Task taskManager::editTask(std::vector<Task> &general) {
+Task taskManager::editTask(std::vector<Task>& general) {
 	int edit_input;
 	int selected_task_edit = selectTaskToEdit(general) - 1;
-	
+
 	//creates a copy of the task being edited and then erases the origional task
 	Task temp = general[selected_task_edit];
 	general.erase(general.begin() + selected_task_edit);
@@ -107,10 +111,10 @@ Task taskManager::editTask(std::vector<Task> &general) {
 		break;
 	case 6:
 		editNote(temp);
-		break; 
+		break;
 	case 7:
 		editUrgent(temp);
-		break; 
+		break;
 	}
 	return temp;
 }
@@ -140,31 +144,31 @@ void editName(Task& temp) {
 }
 void editDeadline(Task& temp) {
 	int edit_Dhour;
-	int edit_Dmin; 
-	int edit_Dday; 
-	int edit_Dmonth; 
-	int edit_Dyear; 
+	int edit_Dmin;
+	int edit_Dday;
+	int edit_Dmonth;
+	int edit_Dyear;
 
 	std::cout << "Current Deadline: " << temp.getDeadline() << std::endl;
 	std::cout << "Enter task new Deadline: ";
 	std::cout << "Deadline Hour: ";
-	std::cin >> edit_Dhour; 
+	std::cin >> edit_Dhour;
 	std::cout << "Deadline Minute: ";
-	std::cin >> edit_Dmin; 
+	std::cin >> edit_Dmin;
 	std::cout << "Deadline Day of the month: ";
-	std::cin >> edit_Dday; 
+	std::cin >> edit_Dday;
 	std::cout << "Deadline Month (March = 3, December = 12): ";
-	std::cin >> edit_Dmonth; 
+	std::cin >> edit_Dmonth;
 	std::cout << "Deadline Year (eg: 2024): ";
-	std::cin >> edit_Dyear;  
+	std::cin >> edit_Dyear;
 
-	temp.setDhour(edit_Dhour); 
-	temp.setDmin(edit_Dmin); 
-	temp.setDday(edit_Dday); 
-	temp.setDmonth(edit_Dmonth);  
-	temp.setDyear(edit_Dyear); 
+	temp.setDhour(edit_Dhour);
+	temp.setDmin(edit_Dmin);
+	temp.setDday(edit_Dday);
+	temp.setDmonth(edit_Dmonth);
+	temp.setDyear(edit_Dyear);
 
-	std::cout << "New Task Deadline: " << temp.getDeadline(); 
+	std::cout << "New Task Deadline: " << temp.getDeadline();
 }
 void editReminder(Task& temp) {
 	int edit_Rhour;
@@ -186,11 +190,11 @@ void editReminder(Task& temp) {
 	std::cout << "Reminder Year (eg: 2024): ";
 	std::cin >> edit_Ryear;
 
-	temp.setRhour(edit_Rhour); 
-	temp.setRmin(edit_Rmin); 
-	temp.setRday(edit_Rday); 
-	temp.setRmonth(edit_Rmonth); 
-	temp.setRyear(edit_Ryear); 
+	temp.setRhour(edit_Rhour);
+	temp.setRmin(edit_Rmin);
+	temp.setRday(edit_Rday);
+	temp.setRmonth(edit_Rmonth);
+	temp.setRyear(edit_Ryear);
 
 	std::cout << "New Task Reminder: " << temp.getReminder();
 }
@@ -232,31 +236,31 @@ void editUrgent(Task& temp) {
 }
 
 //sorting
-void taskManager::sortTask(std::vector<Task> general) {
-	
+void taskManager::sortTask(std::vector<Task> general, std::vector<Task> overdue_tasks) {
+
 	std::vector<Task> sorted_name = vecSortName(general);
-	std::vector<Task> sorted_deadline = vecSortDeadline(general);
-	std::vector<Task> sorted_reminder = vecSortReminder(general);
+	//std::vector<Task> sorted_deadline = vecSortDeadline(general);
+	//std::vector<Task> sorted_reminder = vecSortReminder(general);
 	std::vector<Task> sorted_location = vecSortLocation(general);
 	std::vector<Task> sorted_urgent = vecSortUrgent(general);
 
-	printVector(general);
+	printVector(general, overdue_tasks); 
 
-	int selected_method = selectMethodToSort(); 
+	int selected_method = selectMethodToSort();
 
 	switch (selected_method) {
 	case 1:
 		std::cout << "Sorted by name: " << std::endl;
 		printVector(sorted_name);
 		break;
-	case 2:
-		std::cout << "Sorted by deadline: " << std::endl;
-		printVector(sorted_deadline);
-		break;
-	case 3:
-		std::cout << "Sorted by reminder: " << std::endl;
-		printVector(sorted_reminder);
-		break;
+	//case 2:
+	//	std::cout << "Sorted by deadline: " << std::endl;
+	//	printVector(sorted_deadline);
+	//	break;
+	//case 3:
+	//	std::cout << "Sorted by reminder: " << std::endl;
+	//	printVector(sorted_reminder);
+	//	break;
 	case 4:
 		std::cout << "Sorted by location: " << std::endl;
 		printVector(sorted_location);
@@ -283,88 +287,86 @@ int selectMethodToSort() {
 bool compareName(Task& prev, Task& next) {
 	return prev.getName() < next.getName();
 }
-
-bool compareDeadline(Task& prev, Task& next) {
-	if (prev.getDyear() < next.getDyear()) {
-		return 1;
-	}
-	else if (prev.getDyear() > next.getDyear()) {
-		return 0;
-	}
-	else {
-		if (prev.getDmonth() < next.getDmonth()) {
-			return 1;
-		}
-		else if (prev.getDmonth() > next.getDmonth()) {
-			return 0;
-		}
-		else {
-			if (prev.getDday() < next.getDday()) {
-				return 1;
-			}
-			else if (prev.getDday() > next.getDday()) {
-				return 0;
-			}
-			else {
-				if (prev.getDhour() < next.getDhour()) {
-					return 1;
-				}
-				else if (prev.getDday() > next.getDday()) {
-					return 0;
-				}
-				else {
-					if (prev.getDmin() <= next.getDmin()) {
-						return 1;
-					}
-					else {
-						return 0;
-					}
-				}
-			}
-		}
-	}
-}
-
-bool compareReminder(Task& prev, Task& next) {
-	if (prev.getRyear() < next.getRyear()) {
-		return 1;
-	}
-	else if (prev.getRyear() > next.getRyear()) {
-		return 0;
-	}
-	else {
-		if (prev.getRmonth() < next.getRmonth()) {
-			return 1;
-		}
-		else if (prev.getRmonth() > next.getRmonth()) {
-			return 0;
-		}
-		else {
-			if (prev.getRday() < next.getRday()) {
-				return 1;
-			}
-			else if (prev.getRday() > next.getRday()) {
-				return 0;
-			}
-			else {
-				if (prev.getRhour() < next.getRhour()) {
-					return 1;
-				}
-				else if (prev.getRday() > next.getRday()) {
-					return 0;
-				}
-				else {
-					if (prev.getRmin() <= next.getRmin()) {
-						return 1;
-					}
-					else {
-						return 0;
-					}
-				}
-			}
-		}
-	}
-}
+//bool compareDeadline(Task& prev, Task& next) {
+//	if (prev.getDyear() < next.getDyear()) {
+//		return 1;
+//	}
+//	else if (prev.getDyear() > next.getDyear()) {
+//		return 0;
+//	}
+//	else {
+//		if (prev.getDmonth() < next.getDmonth()) {
+//			return 1;
+//		}
+//		else if (prev.getDmonth() > next.getDmonth()) {
+//			return 0;
+//		}
+//		else {
+//			if (prev.getDday() < next.getDday()) {
+//				return 1;
+//			}
+//			else if (prev.getDday() > next.getDday()) {
+//				return 0;
+//			}
+//			else {
+//				if (prev.getDhour() < next.getDhour()) {
+//					return 1;
+//				}
+//				else if (prev.getDday() > next.getDday()) {
+//					return 0;
+//				}
+//				else {
+//					if (prev.getDmin() <= next.getDmin()) {
+//						return 1;
+//					}
+//					else {
+//						return 0;
+//					}
+//				}
+//			}
+//		}
+//	}
+//}
+//bool compareReminder(Task& prev, Task& next) {
+//	if (prev.getRyear() < next.getRyear()) {
+//		return 1;
+//	}
+//	else if (prev.getRyear() > next.getRyear()) {
+//		return 0;
+//	}
+//	else {
+//		if (prev.getRmonth() < next.getRmonth()) {
+//			return 1;
+//		}
+//		else if (prev.getRmonth() > next.getRmonth()) {
+//			return 0;
+//		}
+//		else {
+//			if (prev.getRday() < next.getRday()) {
+//				return 1;
+//			}
+//			else if (prev.getRday() > next.getRday()) {
+//				return 0;
+//			}
+//			else {
+//				if (prev.getRhour() < next.getRhour()) {
+//					return 1;
+//				}
+//				else if (prev.getRday() > next.getRday()) {
+//					return 0;
+//				}
+//				else {
+//					if (prev.getRmin() <= next.getRmin()) {
+//						return 1;
+//					}
+//					else {
+//						return 0;
+//					}
+//				}
+//			}
+//		}
+//	}
+//}
 bool compareLocation(Task& prev, Task& next) {
 	return prev.getLocation() < next.getLocation();
 }
@@ -375,18 +377,18 @@ bool compareUrgent(Task& prev, Task& next) {
 	return prev.getUrgent() > next.getUrgent();
 }
 
-std::vector<Task> vecSortName(std::vector<Task> &general) {
+std::vector<Task> vecSortName(std::vector<Task>& general) {
 	std::sort(general.begin(), general.end(), compareName);
 	return general;
-} 
-std::vector<Task> vecSortDeadline(std::vector<Task>& general) {
-	std::sort(general.begin(), general.end(), compareDeadline);
-	return general;
 }
-std::vector<Task> vecSortReminder(std::vector<Task>& general) {
-	std::sort(general.begin(), general.end(), compareReminder);
-	return general;
-}
+//std::vector<Task> vecSortDeadline(std::vector<Task>& general) {
+//	std::sort(general.begin(), general.end(), compareDeadline);
+//	return general;
+//}
+//std::vector<Task> vecSortReminder(std::vector<Task>& general) {
+//	std::sort(general.begin(), general.end(), compareReminder);
+//	return general;
+//}
 std::vector<Task> vecSortLocation(std::vector<Task>& general) {
 	std::sort(general.begin(), general.end(), compareLocation);
 	return general;
@@ -401,12 +403,12 @@ std::vector<Task> vecSortUrgent(std::vector<Task>& general) {
 }
 
 //deleting
-void taskManager::deleteTask(std::vector<Task> &general) {
-	int selected_task_delete = selectTaskToDelete(general) - 1; 
+void taskManager::deleteTask(std::vector<Task>& general) {
+	int selected_task_delete = selectTaskToDelete(general) - 1;
 	Task temp = general[selected_task_delete];
 
 	char del_conf;
-	std::cout << "Are you sure you want to delete task? y/n: " << temp.getName() << std::endl; 
+	std::cout << "Are you sure you want to delete task? y/n: " << temp.getName() << std::endl;
 	std::cin >> del_conf;
 
 	while (del_conf != 'y' and del_conf != 'n') {
@@ -420,7 +422,8 @@ void taskManager::deleteTask(std::vector<Task> &general) {
 	else {
 		std::cout << "cancelled deletion of: " << temp.getName();
 	}
-} 
+
+}
 
 int selectTaskToDelete(std::vector<Task> general) {
 	int selected_task_delete;
@@ -433,7 +436,3 @@ int selectTaskToDelete(std::vector<Task> general) {
 	std::cin >> selected_task_delete;
 	return selected_task_delete;
 }
-
-
-
-
