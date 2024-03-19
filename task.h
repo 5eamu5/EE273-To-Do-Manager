@@ -4,8 +4,6 @@ class Task {
 public:
 	//Constructor and Destructor
 	Task(std::string func_name, struct tm func_deadline, struct tm func_reminder, std::string func_location, std::string func_subject, bool func_urgent, std::string func_note);
-	Task();
-	Task(std::string Name);
 	~Task();
 
 	//toString

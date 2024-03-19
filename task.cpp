@@ -18,23 +18,17 @@ Task::Task(std::string func_name, struct tm func_deadline, struct tm func_remind
 	Urgent = func_urgent; 
 	Note = func_note; 
 }
-Task::Task() {
-
-}
-Task::Task(std::string func_name) {
-	func_name = Name;
-}
 Task::~Task() {}
 
 std::string Task::toString() {
 	std::stringstream ss;
-	ss << "1. Name: " << getName() << endl; //string
-	ss << "2. Deadline: " << getDhour() << ":" << getDmin() << " " << getDday() << "/" << getDmonth() << "/" << getDyear() << endl; //int
-	ss << "3. Reminder: " << getRhour() << ":" << getRmin() << " " << getRday() << "/" << getRmonth() << "/" << getRyear() << endl; //int
-	ss << "4. Location: " << getLocation() << endl; //string
-	ss << "5. Subject: " << getSubject() << endl; //string
-	ss << "6. Note: " << getNote() << endl; //string
-	ss << "7. Urgent: " << getUrgent() << endl; //string
+	ss << "1. Name: " << Name << endl; //string
+	ss << "2. Deadline: " << Deadline.tm_hour << ":" << Deadline.tm_min << " " << Deadline.tm_mday << "/" << (Deadline.tm_mon + 1) << "/" << (Deadline.tm_year + 1900) << endl; //int
+	ss << "3. Reminder: " << Reminder.tm_hour << ":" << Reminder.tm_min << " " << Reminder.tm_mday << "/" << (Reminder.tm_mon + 1) << "/" << (Reminder.tm_year + 1900) << endl; //int
+	ss << "4. Location: " << Location << endl; //string
+	ss << "5. Subject: " << Subject << endl; //string
+	ss << "6. Note: " << Note << endl; //string
+	ss << "7. Urgent: " << Urgent << endl; //string
 	return ss.str();
 }
 
@@ -55,7 +49,7 @@ time_t Task::unixDeadline() {
 }
 std::string Task::disDeadline() {
 	std::stringstream deadline;
-	deadline << Deadline.tm_hour << ":" << Deadline.tm_min << " " << Deadline.tm_mday << "/" << Deadline.tm_mon << "/" << Deadline.tm_year;
+	deadline << Deadline.tm_hour << ":" << Deadline.tm_min << " " << Deadline.tm_mday << "/" << (Deadline.tm_mon + 1) << "/" << (Deadline.tm_year + 1900);
 	return deadline.str();
 }
 
@@ -68,7 +62,7 @@ time_t Task::unixReminder() {
 }
 std::string Task::disReminder() {
 	std::stringstream reminder;
-	reminder << Reminder.tm_hour << ":" << Reminder.tm_min << " " << Reminder.tm_mday << "/" << Reminder.tm_mon << "/" << Reminder.tm_year;
+	reminder << Reminder.tm_hour << ":" << Reminder.tm_min << " " << Reminder.tm_mday << "/" << (Reminder.tm_mon + 1) << "/" << (Reminder.tm_year + 1900);
 	return reminder.str();
 }
 

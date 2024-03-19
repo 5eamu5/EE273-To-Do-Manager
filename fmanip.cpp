@@ -24,7 +24,7 @@ void savetoFile(vector<Task>& input, std::string filename) {
     ofstream file(filename);
     if (file.is_open()) {
         for (auto i : input) {
-            file << i.getName() << "," << i.getDhour() << "," << i.getDmin() << "," << i.getDday() << "," << i.getDmonth() << "," << i.getDyear() << "," << i.getRhour() << "," << i.getRmin() << "," << i.getRday() << "," << i.getRmonth() << "," << i.getRyear() << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
+            file << i.getName() << "," << i.getDeadline().tm_hour << "," << i.getDeadline().tm_min << "," << i.getDeadline().tm_mday << "," << i.getDeadline().tm_mon << "," << i.getDeadline().tm_year << "," << i.getReminder().tm_hour << "," << i.getReminder().tm_min << "," << i.getReminder().tm_mday << "," << i.getReminder().tm_mon << "," << i.getReminder().tm_year << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
         }
         cout << endl << "Data Saved" << endl;
         file.close();
@@ -52,23 +52,26 @@ void readfromFile(vector<Task>& input, std::string filename) {
             }
             if (objAttributes.size() == 15) {
 
+                struct tm deadline;
+                struct tm reminder;
+
                 string name = objAttributes[0];
-                int dhour = stoi(objAttributes[1]);
-                int dmin = stoi(objAttributes[2]);
-                int dday = stoi(objAttributes[3]);
-                int dmonth = stoi(objAttributes[4]);
-                int dyear = stoi(objAttributes[5]);
-                int rhour = stoi(objAttributes[6]);
-                int rmin = stoi(objAttributes[7]);
-                int rday = stoi(objAttributes[8]);
-                int rmonth = stoi(objAttributes[9]);
-                int ryear = stoi(objAttributes[10]);
+                deadline.tm_hour = stoi(objAttributes[1]);
+                deadline.tm_min = stoi(objAttributes[2]);
+                deadline.tm_mday = stoi(objAttributes[3]);
+                deadline.tm_mon = stoi(objAttributes[4]);
+                deadline.tm_year = stoi(objAttributes[5]);
+                reminder.tm_hour = stoi(objAttributes[6]);
+                reminder.tm_min = stoi(objAttributes[7]);
+                reminder.tm_mday = stoi(objAttributes[8]);
+                reminder.tm_mon = stoi(objAttributes[9]);
+                reminder.tm_year = stoi(objAttributes[10]);
                 string location = objAttributes[11];
                 string subject = objAttributes[12];
                 bool urgent = stoi(objAttributes[13]);
                 string note = objAttributes[14];
 
-                Task temp(name, dhour, dmin, dday, dmonth, dyear, rhour, rmin, rday, rmonth, ryear, location, subject, urgent, note);
+                Task temp(name, deadline, reminder, location, subject, urgent, note);
                 input.push_back(temp);
             }
         }
