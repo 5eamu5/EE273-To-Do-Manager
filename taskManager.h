@@ -1,3 +1,4 @@
+
 #pragma once
 
 class Task;
@@ -7,19 +8,20 @@ class taskManager
 
 public:
 	taskManager();
-	taskManager(Task t); 
+	taskManager(Task t);
 	~taskManager();
 
 	Task createTask();
-	Task editTask(std::vector<Task> &general);
+	Task editTask(std::vector<Task>& general);
 	void sortTask(std::vector<Task> general, std::vector<Task> overdue_tasks);
-	void deleteTask(std::vector<Task>& general); 
+	void deleteTask(std::vector<Task>& general);
 
 private:
 };
 
 //other
-void printVector(std::vector<Task> general, std::vector<Task> overdue);
+void printVector(std::vector<Task> general);
+void printOverdue(std::vector<Task> overdue_vec);
 
 //editing
 int selectTaskToEdit(std::vector<Task>& vec);
@@ -30,7 +32,7 @@ void editReminder(Task& temp);
 void editLocation(Task& temp);
 void editSubject(Task& temp);
 void editNote(Task& temp);
-void editUrgent(Task& temp); 
+void editUrgent(Task& temp);
 
 
 //sorting
@@ -53,5 +55,3 @@ std::vector<Task> vecSortUrgent(std::vector<Task>& general);
 
 //deleting
 int selectTaskToDelete(std::vector<Task> general);
-
-
