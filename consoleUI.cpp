@@ -9,17 +9,22 @@
 #include "time.h"
 
 using namespace std;
+
 taskManager task_manager;
+
 std::vector<Task> general;
-bool start = false;
+std::vector<Task> overdue_vec; 
+
+bool startup = false;
 
 void contents() {
 
-	if (start == false) {
-		readfromFile(general);
+	if (startup == false) {
+		readfromFile(general, "savedata.txt");
+		readfromFile(overdue_vec, "overdue.txt");
 		updateTime(general);
 		reminderCheck(general);
-		start = true;
+		startup = true;
 	}
 	std::string contents_input;
 
@@ -30,7 +35,7 @@ void contents() {
 	std::cout << "1. create task" << endl;
 	std::cout << "2. edit task" << endl;
 	std::cout << "3. view & sort tasks" << endl;
-	std::cout << "4. delete task" << endl << endl; 
+	std::cout << "4. delete task" << endl << endl;
 
 	std::cout << "Press 'w' to wipe file (dev)" << endl;
 	std::cout << "Press 's' to save" << endl;
@@ -40,16 +45,16 @@ void contents() {
 
 	std::cin >> contents_input;
 	if (contents_input == "q") {
-		savetoFile(general);
+		savetoFile(general, "savedata.txt"); 
 		exit(0);
 	}
 	else if (contents_input == "s") {
 		//task_manager.pushGeneral();
-		savetoFile(general);
+		savetoFile(general, "savedata.txt");
 		returnToContents();
-	}	
+	}
 	else if (contents_input == "w") {
-		wipeFile(general);
+		wipeFile(general, "savedata.txt");
 		returnToContents();
 	}
 	int contents_input_int = std::stoi(contents_input);
@@ -77,20 +82,20 @@ void contents() {
 		}
 	}
 
-			
+
 }
 
 void createTaskUI() {
 
 	upperDivider();
 
-	std::cout << "-CREATE NEW TASK-" << endl;
-	Task temp = task_manager.createTask(); 
+	std::cout << "- CREATE TASKS -" << endl;
+	Task temp = task_manager.createTask();
 	std::cout << "\n" << temp.toString() << std::endl;
 	general.push_back(temp);
 	returnToContents();
 
-	lowerDivider(); 
+	lowerDivider();
 
 }
 
@@ -98,7 +103,7 @@ void editTaskUI() {
 
 	upperDivider();
 
-	std::cout << "-EDIT A TASK-" << endl;
+	std::cout << "- EDIT TASKS -" << endl;
 	Task temp = task_manager.editTask(general);
 	general.push_back(temp);
 	returnToEdit();
@@ -110,19 +115,19 @@ void editTaskUI() {
 void sortTaskUI() {
 
 	upperDivider();
-	std::cout << "-SORT A TASK-" << endl;
-	task_manager.sortTask(general);
+	std::cout << "- SORT / VIEW TASKS -" << endl;
+	task_manager.sortTask(general, overdue_vec);
 	returnToSort();
 	lowerDivider();
-	
+
 }
 
 void deleteTaskUI() {
 
 	upperDivider();
-	std::cout << "-DELETE A TASK-" << std::endl;
-	task_manager.deleteTask(general); 
-	returnToEdit();
+	std::cout << "- DELETE TASKS -" << std::endl;
+	task_manager.deleteTask(general);
+	returnToDelete();
 	lowerDivider();
 }
 
@@ -146,7 +151,7 @@ void returnToContents() {
 		contents();
 	}
 	else {
-		savetoFile(general);
+		savetoFile(general, "savedata.txt");
 		exit(0);
 	}
 }
@@ -170,7 +175,7 @@ void returnToEdit() {
 		editTaskUI();
 	}
 	else {
-		savetoFile(general);
+		savetoFile(general, "savedata.txt");
 		contents();
 	}
 }
@@ -194,7 +199,7 @@ void returnToSort() {
 		sortTaskUI();
 	}
 	else {
-		savetoFile(general);
+		savetoFile(general, "savedata.txt");
 		contents();
 	}
 }
@@ -218,7 +223,7 @@ void returnToDelete() {
 		deleteTaskUI();
 	}
 	else {
-		savetoFile(general);
+		savetoFile(general, "savedata.txt");
 		contents();
 	}
 }
@@ -227,7 +232,7 @@ void upperDivider() {
 	std::cout << std::string(2, '\n') << std::string(10, '-') << endl;
 	std::cout << std::string(10, '*') << std::string(2, '\n');
 }
-void lowerDivider() { 
+void lowerDivider() {
 	std::cout << std::string(2, '\n') << std::string(10, '^') << endl;
 	std::cout << std::string(10, '-') << std::string(2, '\n');
 }
