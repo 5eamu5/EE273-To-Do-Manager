@@ -44,7 +44,7 @@ void reminderCheck(vector<Task>& input) {
     int taskcount{ 0 };
 
     for (Task i : input) {
-        if (i.unixReminder() < current) {
+        if (i.unixReminder() > current) {
             reminderMessage(i);
         }
     }

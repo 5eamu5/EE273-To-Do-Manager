@@ -39,6 +39,11 @@ Task taskManager::createTask() {
 	std::string create_subject;
 	std::string create_note;
 
+	int dmon;
+	int dyear;
+	int rmon;
+	int ryear;
+
 	std::cout << "Please enter the following data about your task: " << std::endl;
 	std::cout << "Name: ";
 	std::cin >> create_name;
@@ -49,9 +54,11 @@ Task taskManager::createTask() {
 	std::cout << "Deadline Day of the month: ";
 	std::cin >> crea_deadline.tm_mday;
 	std::cout << "Deadline Month (March = 3, December = 12): ";
-	std::cin >> crea_deadline.tm_mon;
+	std::cin >> dmon;
+	crea_deadline.tm_mon = dmon - 1;
 	std::cout << "Deadline Year (eg: 2024): ";
-	std::cin >> crea_deadline.tm_year;
+	std::cin >> dyear;
+	crea_deadline.tm_year = dyear - 1900;
 	std::cout << "Reminder Hour: ";
 	std::cin >> crea_reminder.tm_hour;
 	std::cout << "Reminder Minute: ";
@@ -59,9 +66,11 @@ Task taskManager::createTask() {
 	std::cout << "Reminder Day of the month: ";
 	std::cin >> crea_reminder.tm_mday;
 	std::cout << "Reminder Month (March = 3, December = 12): ";
-	std::cin >> crea_reminder.tm_mon;
+	std::cin >> rmon;
+	crea_reminder.tm_mon = rmon - 1;
 	std::cout << "Reminder Year (eg: 2024): ";
-	std::cin >> crea_reminder.tm_year;
+	std::cin >> ryear;
+	crea_reminder.tm_year = ryear - 1900;
 	std::cout << "Location: ";
 	std::cin >> create_location;
 	std::cout << "Subject: ";
