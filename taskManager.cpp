@@ -17,12 +17,14 @@ taskManager::~taskManager() {
 }
 
 //other
-void printVector(std::vector<Task> vec, std::vector<Task> overdue) {
+void printVector(std::vector<Task> vec) {
 	for (Task t : vec) {
 		std::cout << "-Tasks-" << std::endl;
 		std::cout << t.toString() << std::endl;
 	}
-	for (Task t : overdue) {
+}
+void printOverdue(std::vector<Task> overdue_vec) {
+	for (Task t : overdue_vec) {
 		std::cout << "-Overdue Tasks-" << std::endl;
 		std::cout << t.toString() << std::endl;
 	}
@@ -67,7 +69,7 @@ Task taskManager::createTask() {
 	std::cout << "Note: ";
 	std::cin >> create_note;
 
-	Task temp(create_name, crea_deadline, crea_reminder , create_location, create_subject, 0, create_note);
+	Task temp(create_name, crea_deadline, crea_reminder, create_location, create_subject, 0, create_note);
 
 	return temp;
 }
@@ -150,9 +152,9 @@ void editDeadline(Task& temp) {
 	std::cout << "Deadline Year (eg: 2024): ";
 	std::cin >> func_deadline.tm_year;
 
-	temp.setDeadline(func_deadline); 
+	temp.setDeadline(func_deadline);
 
-	std::cout << "New Task Deadline: " << temp.disDeadline();  
+	std::cout << "New Task Deadline: " << temp.disDeadline();
 }
 void editReminder(Task& temp) {
 	struct tm func_reminder;
@@ -220,15 +222,16 @@ void taskManager::sortTask(std::vector<Task> general, std::vector<Task> overdue_
 	std::vector<Task> sorted_location = vecSortLocation(general);
 	std::vector<Task> sorted_urgent = vecSortUrgent(general);
 
-	printVector(general, overdue_tasks); 
+	printVector(general);
+	printOverdue(overdue_tasks);
 
 	int selected_method = selectMethodToSort();
 
 	switch (selected_method) {
 	case 1:
 		std::cout << "Sorted by name: " << std::endl;
-		printVector(sorted_name)
-		break;
+		printVector(sorted_name);
+			break;
 	case 2:
 		std::cout << "Sorted by deadline: " << std::endl;
 		printVector(sorted_deadline);
