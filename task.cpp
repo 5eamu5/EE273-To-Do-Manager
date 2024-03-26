@@ -49,7 +49,7 @@ time_t Task::unixDeadline() {
 }
 std::string Task::disDeadline() {
 	std::stringstream deadline;
-	deadline << Deadline.tm_hour << ":" << Deadline.tm_min << " " << Deadline.tm_mday << "/" << (Deadline.tm_mon + 1) << "/" << (Deadline.tm_year + 1927);
+	deadline << Deadline.tm_hour << ":" << Deadline.tm_min << " " << Deadline.tm_mday << "/" << (Deadline.tm_mon + 1) << "/" << (Deadline.tm_year + 1900);
 	return deadline.str();
 }
 
@@ -62,7 +62,7 @@ time_t Task::unixReminder() {
 }
 std::string Task::disReminder() {
 	std::stringstream reminder;
-	reminder << Reminder.tm_hour << ":" << Reminder.tm_min << " " << Reminder.tm_mday << "/" << (Reminder.tm_mon + 1) << "/" << (Reminder.tm_year + 1927);
+	reminder << Reminder.tm_hour << ":" << Reminder.tm_min << " " << Reminder.tm_mday << "/" << (Reminder.tm_mon + 1) << "/" << (Reminder.tm_year + 1900);
 	return reminder.str();
 }
 

@@ -10,9 +10,7 @@ using namespace std;
 int main() {
 
 	time_t ttime = time(0);
-
 	struct tm buf;
-
 	localtime_s(&buf, &ttime);
 	time_t current = mktime(&buf);
 

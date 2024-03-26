@@ -50,6 +50,7 @@ void readfromFile(vector<Task>& input, std::string filename) {
             while (getline(iss, info, ',')) {
                 objAttributes.push_back(info);
             }
+
             if (objAttributes.size() == 15) {
 
                 struct tm deadline;

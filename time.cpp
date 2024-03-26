@@ -21,6 +21,7 @@ void updateTime(vector<Task>& input) {
 
     int taskcount{0};
 
+    //checks task in overdue
     for (Task i : input) { 
         if (i.unixDeadline() < current) {
             file << i.getName() << "," << i.getDeadline().tm_hour << "," << i.getDeadline().tm_min << "," << i.getDeadline().tm_mday << "," << i.getDeadline().tm_mon << "," << i.getDeadline().tm_year << "," << i.getReminder().tm_hour << "," << i.getReminder().tm_min << "," << i.getReminder().tm_mday << "," << i.getReminder().tm_mon << "," << i.getReminder().tm_year << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
@@ -44,7 +45,7 @@ void reminderCheck(vector<Task>& input) {
     int taskcount{ 0 };
 
     for (Task i : input) {
-        if (i.unixReminder() > current) {
+        if (i.unixReminder() < current) {
             reminderMessage(i);
         }
     }

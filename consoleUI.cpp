@@ -92,6 +92,15 @@ void createTaskUI() {
 	std::cout << "- CREATE TASKS -" << endl;
 	Task temp = task_manager.createTask();
 	std::cout << "\n" << temp.toString() << std::endl;
+	std::cout << "unix deadline: " << temp.unixDeadline() << std::endl;
+
+	time_t ttime = time(0);
+	struct tm buf;
+	localtime_s(&buf, &ttime);
+	time_t current = mktime(&buf);
+
+	std::cout << "unix current: " << current << std::endl;
+
 	general.push_back(temp);
 	returnToContents();
 

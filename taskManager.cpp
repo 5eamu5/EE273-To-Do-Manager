@@ -45,8 +45,9 @@ Task taskManager::createTask() {
 	int ryear;
 
 	std::cout << "Please enter the following data about your task: " << std::endl;
-	std::cout << "Name: ";
-	std::cin >> create_name;
+	std::cout << "Name: "; 
+	std::getline(std::cin, create_name); 
+
 	std::cout << "Deadline Hour: ";
 	std::cin >> crea_deadline.tm_hour;
 	std::cout << "Deadline Minute: ";
@@ -59,6 +60,7 @@ Task taskManager::createTask() {
 	std::cout << "Deadline Year (eg: 2024): ";
 	std::cin >> dyear;
 	crea_deadline.tm_year = dyear - 1900;
+
 	std::cout << "Reminder Hour: ";
 	std::cin >> crea_reminder.tm_hour;
 	std::cout << "Reminder Minute: ";
@@ -71,12 +73,15 @@ Task taskManager::createTask() {
 	std::cout << "Reminder Year (eg: 2024): ";
 	std::cin >> ryear;
 	crea_reminder.tm_year = ryear - 1900;
+
 	std::cout << "Location: ";
-	std::cin >> create_location;
+	std::getline(std::cin, create_location);
 	std::cout << "Subject: ";
-	std::cin >> create_subject;
+	std::getline(std::cin, create_subject);
 	std::cout << "Note: ";
-	std::cin >> create_note;
+	std::getline(std::cin, create_note); 
+
+	crea_deadline.tm_sec = 0; //need to initialise seconds otherwise it will default to random memory value
 
 	Task temp(create_name, crea_deadline, crea_reminder, create_location, create_subject, 0, create_note);
 
@@ -229,6 +234,7 @@ void taskManager::sortTask(std::vector<Task> general, std::vector<Task> overdue_
 	std::vector<Task> sorted_deadline = vecSortDeadline(general);
 	std::vector<Task> sorted_reminder = vecSortReminder(general);
 	std::vector<Task> sorted_location = vecSortLocation(general);
+	std::vector<Task> sorted_subject = vecSortSubject(general);
 	std::vector<Task> sorted_urgent = vecSortUrgent(general);
 
 	printVector(general);
@@ -254,8 +260,16 @@ void taskManager::sortTask(std::vector<Task> general, std::vector<Task> overdue_
 		printVector(sorted_location);
 		break;
 	case 5:
+		std::cout << "Sorted by subject: " << std::endl;
+		printVector(sorted_subject);
+		break;
+	case 6:
 		std::cout << "Sorted by marked as urgent: " << std::endl;
 		printVector(sorted_urgent);
+		break;
+	case 7:
+		std::cout << "Printed Overdue Tasks: " << std::endl;
+		printOverdue(overdue_tasks);
 		break;
 	}
 }
@@ -269,6 +283,7 @@ int selectMethodToSort() {
 	std::cout << "4. Location" << std::endl;
 	std::cout << "5. Subject" << std::endl;
 	std::cout << "6. Marked as Urgent" << std::endl;
+	std::cout << "7. Print Overdue" << std::endl;
 	std::cout << "0. Return to menu." << std::endl;	std::cin >> selected_method;
 	return selected_method;
 }
