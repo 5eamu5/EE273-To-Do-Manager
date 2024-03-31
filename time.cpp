@@ -28,8 +28,8 @@ void updateTime(vector<Task>& input) {
             input.erase(input.begin() + taskcount);
             overdueMessage(i);
         }
-    }
     taskcount++;
+    }
 }
 
 void reminderCheck(vector<Task>& input) {
