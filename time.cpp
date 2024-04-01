@@ -35,14 +35,9 @@ void updateTime(vector<Task>& input) {
 void reminderCheck(vector<Task>& input) {
 
     time_t ttime = time(0);
-
     struct tm buf;
-
     localtime_s(&buf, &ttime);
-
     time_t current = mktime(&buf);
-
-    int taskcount{ 0 };
 
     for (Task i : input) {
         if (i.unixReminder() < current) {
