@@ -20,24 +20,24 @@ taskManager::~taskManager() {
 void printVector(std::vector<Task> vec) {
 	for (Task t : vec) {
 		std::cout << "-Tasks-" << std::endl;
-		std::cout << t.toString() << std::endl;
+		t.toString();
 	}
 }
 void printOverdue(std::vector<Task> overdue_vec) {
 	for (Task t : overdue_vec) {
 		std::cout << "-Overdue Tasks-" << std::endl;
-		std::cout << t.toString() << std::endl;
+		t.toString();
 	}
 }
 
 //creating
 Task taskManager::createTask() {
-	std::string create_name;
-	struct tm crea_deadline;
-	struct tm crea_reminder;
-	std::string create_location;
-	std::string create_subject;
-	std::string create_note;
+	std::string create_name{ "" };
+	struct tm create_deadline;
+	struct tm create_reminder;
+	std::string create_location{ "" };
+	std::string create_subject{ "" };
+	std::string create_note{ "" };
 
 	int dmon;
 	int dyear;
@@ -46,44 +46,50 @@ Task taskManager::createTask() {
 
 	std::cout << "Please enter the following data about your task: " << std::endl;
 	std::cout << "Name: "; 
-	std::getline(std::cin, create_name); 
+	std::cin.ignore(); //without this cin just becomes white spaces
+	getline(std::cin, create_name); //these lines needed for every string input, allow multi-word inputs
 
 	std::cout << "Deadline Hour: ";
-	std::cin >> crea_deadline.tm_hour;
+	std::cin >> create_deadline.tm_hour;
 	std::cout << "Deadline Minute: ";
-	std::cin >> crea_deadline.tm_min;
+	std::cin >> create_deadline.tm_min;
 	std::cout << "Deadline Day of the month: ";
-	std::cin >> crea_deadline.tm_mday;
+	std::cin >> create_deadline.tm_mday;
 	std::cout << "Deadline Month (March = 3, December = 12): ";
 	std::cin >> dmon;
-	crea_deadline.tm_mon = dmon - 1;
+	create_deadline.tm_mon = dmon - 1;
 	std::cout << "Deadline Year (eg: 2024): ";
 	std::cin >> dyear;
-	crea_deadline.tm_year = dyear - 1900;
+	create_deadline.tm_year = dyear - 1900;
 
 	std::cout << "Reminder Hour: ";
-	std::cin >> crea_reminder.tm_hour;
+	std::cin >> create_reminder.tm_hour;
 	std::cout << "Reminder Minute: ";
-	std::cin >> crea_reminder.tm_min;
+	std::cin >> create_reminder.tm_min;
 	std::cout << "Reminder Day of the month: ";
-	std::cin >> crea_reminder.tm_mday;
+	std::cin >> create_reminder.tm_mday;
 	std::cout << "Reminder Month (March = 3, December = 12): ";
 	std::cin >> rmon;
-	crea_reminder.tm_mon = rmon - 1;
+	create_reminder.tm_mon = rmon - 1;
 	std::cout << "Reminder Year (eg: 2024): ";
 	std::cin >> ryear;
-	crea_reminder.tm_year = ryear - 1900;
+	create_reminder.tm_year = ryear - 1900;
 
 	std::cout << "Location: ";
-	std::getline(std::cin, create_location);
+	std::cin.ignore();
+	getline(std::cin, create_location);
+
 	std::cout << "Subject: ";
-	std::getline(std::cin, create_subject);
+	std::cin.ignore(); 
+	getline(std::cin, create_subject); 
+
 	std::cout << "Note: ";
-	std::getline(std::cin, create_note); 
+	std::cin.ignore(); 
+	getline(std::cin, create_note); 
 
-	crea_deadline.tm_sec = 0; //need to initialise seconds otherwise it will default to random memory value
+	create_deadline.tm_sec = 0; //need to initialise seconds otherwise it will default to random memory value
 
-	Task temp(create_name, crea_deadline, crea_reminder, create_location, create_subject, 0, create_note);
+	Task temp(create_name, create_deadline, create_reminder, create_location, create_subject, 0, create_note);
 
 	return temp;
 }
@@ -98,7 +104,8 @@ Task taskManager::editTask(std::vector<Task>& general) {
 	general.erase(general.begin() + selected_task_edit);
 
 	std::cout << "You have selected task: " << temp.getName() << std::endl;
-	std::cout << "Select an element to edit: " << std::endl << temp.toString() << std::endl;
+	std::cout << "Select an element to edit: " << std::endl;
+	temp.toString();
 
 	std::cin >> edit_input;
 	switch (edit_input) {

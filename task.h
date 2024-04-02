@@ -7,7 +7,7 @@ public:
 	~Task();
 
 	//toString
-	std::string toString(); 
+	void toString();  
 
 	//Getters
 	std::string getName();

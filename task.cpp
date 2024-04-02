@@ -20,16 +20,20 @@ Task::Task(std::string func_name, struct tm func_deadline, struct tm func_remind
 }
 Task::~Task() {}
 
-std::string Task::toString() {
-	std::stringstream ss;
-	ss << "1. Name: " << Name << endl; //string
-	ss << "2. Deadline: " << Deadline.tm_hour << ":" << Deadline.tm_min << " " << Deadline.tm_mday << "/" << (Deadline.tm_mon + 1) << "/" << (Deadline.tm_year + 1900) << endl; //int
-	ss << "3. Reminder: " << Reminder.tm_hour << ":" << Reminder.tm_min << " " << Reminder.tm_mday << "/" << (Reminder.tm_mon + 1) << "/" << (Reminder.tm_year + 1900) << endl; //int
-	ss << "4. Location: " << Location << endl; //string
-	ss << "5. Subject: " << Subject << endl; //string
-	ss << "6. Note: " << Note << endl; //string
-	ss << "7. Urgent: " << Urgent << endl; //string
-	return ss.str();
+void Task::toString() {
+
+	cout << "============================================" << endl;
+	cout << "             Task " << getName() << "       " << endl;
+	cout << "Name:     " << getName() << endl;
+	cout << "Deadline: " << disDeadline() << endl;
+	cout << "Reminder: " << disReminder() << endl;
+	cout << "Subject:  " << getSubject() << endl;
+	cout << "Location: " << getLocation() << endl;
+	cout << "Note:     " << getNote() << endl;
+	cout << endl;
+	cout << "Unix(dev) " << unixDeadline() << endl;
+	cout << "============================================" << endl;
+	cout << endl;
 }
 
 //setters and getters

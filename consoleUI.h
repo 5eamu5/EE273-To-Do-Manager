@@ -15,5 +15,4 @@ void returnToEdit();
 void returnToSort();
 void returnToDelete();
 
-void upperDivider();
-void lowerDivider();
+void divider();

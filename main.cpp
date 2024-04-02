@@ -13,7 +13,6 @@ int main() {
 	struct tm buf;
 	localtime_s(&buf, &ttime);
 	time_t current = mktime(&buf);
-
 	cout << buf.tm_year << endl;
 	cout << current << endl;
 

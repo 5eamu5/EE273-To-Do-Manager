@@ -57,16 +57,21 @@ void readfromFile(vector<Task>& input, std::string filename) {
                 struct tm reminder;
 
                 string name = objAttributes[0];
+
                 deadline.tm_hour = stoi(objAttributes[1]);
                 deadline.tm_min = stoi(objAttributes[2]);
                 deadline.tm_mday = stoi(objAttributes[3]);
                 deadline.tm_mon = stoi(objAttributes[4]);
                 deadline.tm_year = stoi(objAttributes[5]);
+                deadline.tm_sec = 0; //!!!
+
                 reminder.tm_hour = stoi(objAttributes[6]);
                 reminder.tm_min = stoi(objAttributes[7]);
                 reminder.tm_mday = stoi(objAttributes[8]);
                 reminder.tm_mon = stoi(objAttributes[9]);
                 reminder.tm_year = stoi(objAttributes[10]);
+                reminder.tm_sec = 0; //!!!
+
                 string location = objAttributes[11];
                 string subject = objAttributes[12];
                 bool urgent = stoi(objAttributes[13]);

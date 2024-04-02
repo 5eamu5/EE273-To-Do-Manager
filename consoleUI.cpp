@@ -28,7 +28,7 @@ void contents() {
 	}
 	std::string contents_input;
 
-	upperDivider();
+	divider();
 
 	std::cout << "-TODO MANAGER-" << endl;
 	std::cout << "Please select functionality: " << endl;
@@ -41,7 +41,7 @@ void contents() {
 	std::cout << "Press 's' to save" << endl;
 	std::cout << "Press 'q' to quit" << endl;
 
-	lowerDivider();
+	divider();
 
 	std::cin >> contents_input;
 	if (contents_input == "q") {
@@ -87,68 +87,59 @@ void contents() {
 
 void createTaskUI() {
 
-	upperDivider();
+	divider();
 
 	std::cout << "- CREATE TASKS -" << endl;
 	Task temp = task_manager.createTask();
-	std::cout << "\n" << temp.toString() << std::endl;
-	std::cout << "unix deadline: " << temp.unixDeadline() << std::endl;
-
-	time_t ttime = time(0);
-	struct tm buf;
-	localtime_s(&buf, &ttime);
-	time_t current = mktime(&buf);
-
-	std::cout << "unix current: " << current << std::endl;
-
+	temp.toString();
 	general.push_back(temp);
 	returnToContents();
 
-	lowerDivider();
+	divider();
 
 }
 
 void editTaskUI() {
 
-	upperDivider();
+	divider();
 
 	std::cout << "- EDIT TASKS -" << endl;
 	Task temp = task_manager.editTask(general);
 	general.push_back(temp);
 	returnToEdit();
 
-	lowerDivider();
+	divider();
 
 }
 
 void sortTaskUI() {
 
-	upperDivider();
+	divider();
 	std::cout << "- SORT / VIEW TASKS -" << endl;
 	task_manager.sortTask(general, overdue_vec);
 	returnToSort();
-	lowerDivider();
+	divider();
 
 }
 
 void deleteTaskUI() {
 
-	upperDivider();
+	divider();
 	std::cout << "- DELETE TASKS -" << std::endl;
 	task_manager.deleteTask(general);
 	returnToDelete();
-	lowerDivider();
+	divider();
 }
 
 void returnToContents() {
 	char return_to_contents;
 
-	upperDivider();
+	divider();
 
-	std::cout << "anything else?: " << std::endl;
+	std::cout << "Create Another Task?: " << std::endl;
 	std::cout << "y / n" << std::endl;
 
-	lowerDivider();
+	divider();
 
 	std::cin >> return_to_contents;
 
@@ -167,12 +158,12 @@ void returnToContents() {
 void returnToEdit() {
 	char return_to_edit;
 
-	upperDivider();
+	divider();
 
-	std::cout << "edit anything else?: " << std::endl;
+	std::cout << "Edit Another Task?: " << std::endl;
 	std::cout << "y / n" << std::endl;
 
-	lowerDivider();
+	divider();
 
 	std::cin >> return_to_edit;
 
@@ -191,12 +182,12 @@ void returnToEdit() {
 void returnToSort() {
 	char return_to_sort;
 
-	upperDivider();
+	divider();
 
-	std::cout << "sort anything else?: " << std::endl;
+	std::cout << "Sort Another Task?: " << std::endl;
 	std::cout << "y / n" << std::endl;
 
-	lowerDivider();
+	divider();
 
 	std::cin >> return_to_sort;
 
@@ -215,12 +206,12 @@ void returnToSort() {
 void returnToDelete() {
 	char return_to_delete;
 
-	upperDivider();
+	divider();
 
-	std::cout << "delete anything else?: " << std::endl;
+	std::cout << "Delete Another Task?: " << std::endl;
 	std::cout << "y / n" << std::endl;
 
-	lowerDivider();
+	divider();
 
 	std::cin >> return_to_delete;
 
@@ -237,11 +228,6 @@ void returnToDelete() {
 	}
 }
 
-void upperDivider() {
-	std::cout << std::string(2, '\n') << std::string(10, '-') << endl;
-	std::cout << std::string(10, '*') << std::string(2, '\n');
-}
-void lowerDivider() {
-	std::cout << std::string(2, '\n') << std::string(10, '^') << endl;
-	std::cout << std::string(10, '-') << std::string(2, '\n');
+void divider() {
+	std::cout << std::endl << std::string(45, '=') << std::endl;
 }

@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <time.h>
 #include <vector>
@@ -11,7 +12,7 @@ using namespace std;
 void updateTime(vector<Task>& input) {
 
     std::ofstream file("overdue.txt", std::ios::app);
-    
+
     time_t ttime = time(0);
 
     struct tm buf;
@@ -19,16 +20,16 @@ void updateTime(vector<Task>& input) {
     localtime_s(&buf, &ttime);
     time_t current = mktime(&buf);
 
-    int taskcount{0};
+    int taskcount{ 0 };
 
     //checks task in overdue
-    for (Task i : input) { 
+    for (Task i : input) {
         if (i.unixDeadline() < current) {
             file << i.getName() << "," << i.getDeadline().tm_hour << "," << i.getDeadline().tm_min << "," << i.getDeadline().tm_mday << "," << i.getDeadline().tm_mon << "," << i.getDeadline().tm_year << "," << i.getReminder().tm_hour << "," << i.getReminder().tm_min << "," << i.getReminder().tm_mday << "," << i.getReminder().tm_mon << "," << i.getReminder().tm_year << "," << i.getLocation() << "," << i.getSubject() << "," << i.getUrgent() << "," << i.getNote() << endl;
             input.erase(input.begin() + taskcount);
             overdueMessage(i);
         }
-    taskcount++;
+        taskcount++;
     }
 }
 
