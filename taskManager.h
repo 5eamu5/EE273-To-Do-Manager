@@ -22,6 +22,7 @@ private:
 //other
 void printVector(std::vector<Task> general);
 void printOverdue(std::vector<Task> overdue_vec);
+bool taskisdigit(std::string str);
 
 //editing
 int selectTaskToEdit(std::vector<Task>& vec);

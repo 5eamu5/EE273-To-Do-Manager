@@ -23,14 +23,15 @@ Task::~Task() {}
 void Task::toString() {
 
 	cout << "============================================" << endl;
-	cout << "             Task " << getName() << "       " << endl;
-	cout << "Name:     " << getName() << endl;
-	cout << "Deadline: " << disDeadline() << endl;
-	cout << "Reminder: " << disReminder() << endl;
-	cout << "Subject:  " << getSubject() << endl;
-	cout << "Location: " << getLocation() << endl;
-	cout << "Note:     " << getNote() << endl;
-	cout << endl;
+	cout << "             Task: " << getName() << "       " << endl;
+	cout << "1. Name:     " << getName() << endl;
+	cout << "2. Deadline: " << disDeadline() << endl;
+	cout << "3. Reminder: " << disReminder() << endl;
+	cout << "4. Location: " << getLocation() << endl;
+	cout << "5. Subject:  " << getSubject() << endl;
+	cout << "6. Note:     " << getNote() << endl;
+	cout << "7. URGENT:   " << getUrgent() << endl; 
+	cout << endl; 
 	cout << "Unix(dev) " << unixDeadline() << endl;
 	cout << "============================================" << endl;
 	cout << endl;

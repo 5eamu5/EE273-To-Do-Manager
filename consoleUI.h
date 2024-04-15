@@ -11,8 +11,10 @@ void deleteTaskUI();
 
 //other
 void returnToContents();
+void returnToCreate();
 void returnToEdit();
 void returnToSort();
 void returnToDelete();
 
 void divider();
+void asciiLogo(); 
