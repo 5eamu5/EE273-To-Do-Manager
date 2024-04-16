@@ -52,7 +52,6 @@ void contents() {
 		exit(0);
 	}
 	else if (contents_input == "s") {
-		//task_manager.pushGeneral();
 		savetoFile(general, "savedata.txt");
 		returnToContents();
 	}
@@ -282,6 +281,7 @@ void returnToDelete() {
 void divider() {
 	std::cout << std::endl << std::string(45, '=') << std::endl;
 }
+//logo
 void asciiLogo() {
 	std::cout << "88888888888  d88888b   8888888b     d88888b        888b     d888        d8888 888b    888        d8888   d8888b   8888888888 8888888b." << endl; 
 	std::cout << "    888    d88P' 'Y88b 888  'Y88b d88P' 'Y88b      8888b   d8888       d88888 8888b   888       d88888 d88P  Y88b 888        888   Y88b" << endl;

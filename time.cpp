@@ -9,6 +9,7 @@
 #include "fmanip.h"
 using namespace std;
 
+//checks for overdue tasks
 void updateTime(vector<Task>& input) {
 
     std::ofstream file("overdue.txt", std::ios::app);
@@ -33,6 +34,7 @@ void updateTime(vector<Task>& input) {
     }
 }
 
+//checks if reminders are overdue and produces a reminder notification
 void reminderCheck(vector<Task>& input) {
 
     time_t ttime = time(0);
@@ -47,6 +49,7 @@ void reminderCheck(vector<Task>& input) {
     }
 }
 
+//reminder notifications
 void reminderMessage(Task input) {
     string x = "";
     cout << "============================================" << endl;
@@ -62,6 +65,7 @@ void reminderMessage(Task input) {
     cout << endl;
 }
 
+//overdue notifications
 void overdueMessage(Task input) {
     string x = "";
     cout << "============================================" << endl;

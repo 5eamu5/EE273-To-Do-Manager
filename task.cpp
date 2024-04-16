@@ -20,6 +20,7 @@ Task::Task(std::string func_name, struct tm func_deadline, struct tm func_remind
 }
 Task::~Task() {}
 
+//produces task info in readable notification style
 void Task::toString() {
 
 	cout << "============================================" << endl;
@@ -31,8 +32,6 @@ void Task::toString() {
 	cout << "5. Subject:  " << getSubject() << endl;
 	cout << "6. Note:     " << getNote() << endl;
 	cout << "7. URGENT:   " << getUrgent() << endl; 
-	cout << endl; 
-	cout << "Unix(dev) " << unixDeadline() << endl;
 	cout << "============================================" << endl;
 	cout << endl;
 }
@@ -48,10 +47,14 @@ std::string Task::getNote() {
 struct tm Task::getDeadline() {
 	return Deadline;
 }
+
+//expresses deadline in seconds
 time_t Task::unixDeadline() {
 	time_t output = mktime(&Deadline);
 	return output;
 }
+
+//produces deadline in readable format of hrs:min day/month/year
 std::string Task::disDeadline() {
 	std::stringstream deadline;
 	deadline << Deadline.tm_hour << ":" << Deadline.tm_min << " " << Deadline.tm_mday << "/" << (Deadline.tm_mon + 1) << "/" << (Deadline.tm_year + 1900);
@@ -61,10 +64,14 @@ std::string Task::disDeadline() {
 struct tm Task::getReminder() {
 	return Reminder;
 }
+
+//produces reminder in seconds
 time_t Task::unixReminder() {
 	time_t output = mktime(&Reminder);
 	return output;
 }
+
+//produces reminder in readable format of hrs:min day/month/year
 std::string Task::disReminder() {
 	std::stringstream reminder;
 	reminder << Reminder.tm_hour << ":" << Reminder.tm_min << " " << Reminder.tm_mday << "/" << (Reminder.tm_mon + 1) << "/" << (Reminder.tm_year + 1900);
@@ -81,6 +88,8 @@ bool Task::getUrgent() {
 	return Urgent;
 }
 
+
+//setters
 void Task::setName(std::string Name) {
 	this->Name = Name;
 }

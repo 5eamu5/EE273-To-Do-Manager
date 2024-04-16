@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <thread>
 #include "taskManager.h"
 #include "task.h"
 
@@ -17,18 +18,21 @@ taskManager::~taskManager() {
 }
 
 //other
+//prints all tasks in the general vector
 void printVector(std::vector<Task> vec) {
 	for (Task t : vec) {
 		std::cout << "-Tasks-" << std::endl;
 		t.toString();
 	}
 }
+//prints all tasks in the overdue vector
 void printOverdue(std::vector<Task> overdue_vec) {
 	for (Task t : overdue_vec) {
 		std::cout << "-Overdue Tasks-" << std::endl;
 		t.toString();
 	}
 }
+//custom <cctype> function to check that an entire string is a digit
 bool taskisdigit(std::string str) {
 
 	int length = str.length();
@@ -57,51 +61,6 @@ Task taskManager::createTask() {
 	std::string create_subject{ "" };
 
 	std::string create_note{ "" };
-
-	//std::cout << "Please enter the following data about your task: " << std::endl;
-	//std::cout << "Name: "; 
-	//std::cin.ignore(); //without this cin just becomes white spaces
-	//getline(std::cin, create_name); //these lines needed for every string input, allow multi-word inputs
-
-	//std::cout << "Deadline Hour: ";
-	//std::cin >> create_deadline.tm_hour;
-	//std::cout << "Deadline Minute: ";
-	//std::cin >> create_deadline.tm_min;
-	//std::cout << "Deadline Day of the month: ";
-	//std::cin >> create_deadline.tm_mday;
-	//std::cout << "Deadline Month (March = 3, December = 12): ";
-	//std::cin >> dmon;
-	//create_deadline.tm_mon = dmon - 1;
-	//std::cout << "Deadline Year (eg: 2024): ";
-	//std::cin >> dyear;
-	//create_deadline.tm_year = dyear - 1900;
-
-	//std::cout << "Reminder Hour: ";
-	//std::cin >> create_reminder.tm_hour;
-	//std::cout << "Reminder Minute: ";
-	//std::cin >> create_reminder.tm_min;
-	//std::cout << "Reminder Day of the month: ";
-	//std::cin >> create_reminder.tm_mday;
-	//std::cout << "Reminder Month (March = 3, December = 12): ";
-	//std::cin >> rmon;
-	//create_reminder.tm_mon = rmon - 1;
-	//std::cout << "Reminder Year (eg: 2024): ";
-	//std::cin >> ryear;
-	//create_reminder.tm_year = ryear - 1900;
-
-	//std::cout << "Location: ";
-	//std::cin.ignore();
-	//getline(std::cin, create_location);
-
-	//std::cout << "Subject: ";
-	//std::cin.ignore(); 
-	//getline(std::cin, create_subject); 
-
-	//std::cout << "Note: ";
-	//std::cin.ignore(); 
-	//getline(std::cin, create_note); 
-
-
 
 	//testing error catching here
 	//string inputs need to use .ignore() to skip white spaces, and getline for multiple word inputs
@@ -197,6 +156,7 @@ Task taskManager::createTask() {
 	create_reminder.tm_year = stoi(ec_ryear) - 1900;
 
 	//location
+	//need to ignore previous console text, and flush the console after input
 	std::cin.ignore(); 
 	std::cout << "Location: ";
 	std::cout.flush();
@@ -264,6 +224,7 @@ Task taskManager::editTask(std::vector<Task>& general) {
 	return temp;
 }
 
+//chooses which task the user wants to edit 
 int selectTaskToEdit(std::vector<Task>& general) {
 	int selected_task_edit;
 
@@ -285,6 +246,8 @@ int selectTaskToEdit(std::vector<Task>& general) {
 
 	return selected_task_edit;
 }
+
+//all editing functions
 void editName(Task& temp) {
 	std::string edit_name;
 
@@ -450,6 +413,8 @@ void editUrgent(Task& temp) {
 //sorting
 void taskManager::sortTask(std::vector<Task> general, std::vector<Task> overdue_tasks) {
 
+	//when program is run, 6 vectors created sorted by member
+	//switch case calls one of these vecors
 	std::vector<Task> sorted_name = vecSortName(general);
 	std::vector<Task> sorted_deadline = vecSortDeadline(general);
 	std::vector<Task> sorted_reminder = vecSortReminder(general);
@@ -496,6 +461,7 @@ void taskManager::sortTask(std::vector<Task> general, std::vector<Task> overdue_
 	}
 }
 
+//choose which member to sort by
 int selectMethodToSort() {
 	int selected_method;
 	std::cout << std::endl << "Please select a Method to Sort: " << std::endl;
@@ -558,6 +524,7 @@ void taskManager::deleteTask(std::vector<Task>& general) {
 	int selected_task_delete = selectTaskToDelete(general) - 1;
 	Task temp = general[selected_task_delete];
 
+	//confirmation for deleting
 	char del_conf;
 	std::cout << "Are you sure you want to delete task? y/n: " << temp.getName() << std::endl;
 	std::cin >> del_conf;

@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -8,7 +7,7 @@
 #include "task.h"
 using namespace std;
 
-
+//wipes file and general vector
 void wipeFile(vector<Task>& input, std::string filename) {
     ofstream file(filename, std::ofstream::trunc);
     input.clear();
@@ -20,6 +19,7 @@ void wipeFile(vector<Task>& input, std::string filename) {
     }
 }
 
+//saves vector data to savedata.txt
 void savetoFile(vector<Task>& input, std::string filename) {
     ofstream file(filename);
     if (file.is_open()) {
@@ -34,6 +34,7 @@ void savetoFile(vector<Task>& input, std::string filename) {
     }
 }
 
+//reads savedata.txt and stores data in general vector
 void readfromFile(vector<Task>& input, std::string filename) {
 
     ifstream file(filename);
