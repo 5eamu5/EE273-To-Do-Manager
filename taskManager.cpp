@@ -391,7 +391,7 @@ void editNote(Task& temp) {
 	std::cout << "New Task Note: " << temp.getNote();
 }
 void editUrgent(Task& temp) {
-	bool edit_urgent;
+	char edit_urgent;
 
 	std::cout << "Current Task Status: " << std::boolalpha << temp.getUrgent() << std::endl; 
 	std::cout << "Mark Task as Urgent? (y/n): ";
