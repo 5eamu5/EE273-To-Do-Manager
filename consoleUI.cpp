@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 #include <stdlib.h>
+#include <chrono>
+#include <thread>
 #include "task.h" 
 #include "taskManager.h"
 #include "consoleUI.h"
@@ -287,12 +289,21 @@ void divider() {
 }
 //logo
 void asciiLogo() {
+	std::this_thread::sleep_for(std::chrono::milliseconds(80));
 	std::cout << "88888888888  d88888b   8888888b     d88888b        888b     d888        d8888 888b    888        d8888   d8888b   8888888888 8888888b." << endl; 
+	std::this_thread::sleep_for(std::chrono::milliseconds(80));
 	std::cout << "    888    d88P' 'Y88b 888  'Y88b d88P' 'Y88b      8888b   d8888       d88888 8888b   888       d88888 d88P  Y88b 888        888   Y88b" << endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(80));
 	std::cout << "    888    888     888 888    888 888     888      88888b.d88888      d88P888 88888b  888      d88P888 888    888 888        888    888" << endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(80));
 	std::cout << "    888    888     888 888    888 888     888      888Y88888P888     d88P 888 888Y88b 888     d88P 888 888        8888888    888   d88P" << endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(80));
 	std::cout << "    888    888     888 888    888 888     888      888 Y888P 888    d88P  888 888 Y88b888    d88P  888 888  88888 888        8888888P" << endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(80));
 	std::cout << "    888    888     888 888    888 888     888      888  Y8P  888   d88P   888 888  Y88888   d88P   888 888    888 888        888 T88b" << endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(80));
 	std::cout << "    888    Y88b   d88P 888   d88P Y88b   d88P      888   '   888  d8888888888 888   Y8888  d8888888888 Y88b  d88P 888        888  T88b" << endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(80));
 	std::cout << "    888     'Y88888P'  8888888P'   'Y88888P'       888       888 d88P     888 888    Y888 d88P     888  'Y8888P88 8888888888 888   T88b" << endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(300));
 }
