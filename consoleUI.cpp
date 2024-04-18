@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <stdlib.h>
 #include "task.h" 
 #include "taskManager.h"
 #include "consoleUI.h"
@@ -25,11 +26,12 @@ void contents() {
 		readfromFile(overdue_vec, "overdue.txt");
 		updateTime(general);
 		reminderCheck(general);
-		asciiLogo(); 
 		startup = true;
 	}
 	std::string contents_input;
 
+	system("cls");
+	asciiLogo();
 	//table of contents
 	divider();
 
@@ -110,11 +112,12 @@ void contents() {
 //UI for create, edit, sort and delete
 //direct user to func. and then offer to continue or quit
 void createTaskUI() {
-
+	system("cls");
 	divider();
 
 	std::cout << "- CREATE TASKS -" << endl;
 	Task temp = task_manager.createTask();
+	system("cls");
 	temp.toString();
 	general.push_back(temp);
 	returnToCreate();
@@ -123,7 +126,7 @@ void createTaskUI() {
 
 }
 void editTaskUI() {
-
+	system("cls");
 	divider();
 
 	std::cout << "- EDIT TASKS -" << endl;
@@ -135,7 +138,7 @@ void editTaskUI() {
 
 }
 void sortTaskUI() {
-
+	system("cls");
 	divider();
 	std::cout << "- SORT / VIEW TASKS -" << endl;
 	std::cout << "You Currently Have: " << general.size() << " Tasks" << endl;
@@ -147,7 +150,7 @@ void sortTaskUI() {
 
 }
 void deleteTaskUI() {
-
+	system("cls");
 	divider();
 	std::cout << "- DELETE TASKS -" << std::endl;
 	task_manager.deleteTask(general);
@@ -180,6 +183,7 @@ void returnToContents() {
 		exit(0);
 	}
 }
+
 void returnToCreate() {
 	char return_to_create;
 

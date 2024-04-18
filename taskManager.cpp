@@ -5,7 +5,7 @@
 #include <thread>
 #include "taskManager.h"
 #include "task.h"
-
+#include "consoleUI.h"
 
 taskManager::taskManager() {
 
@@ -182,21 +182,29 @@ Task taskManager::createTask() {
 
 //editing
 Task taskManager::editTask(std::vector<Task>& general) {
+	
+	int selected_task = selectTaskToEdit(general);
+
+	if (selected_task == 8) {
+		contents();
+	}
+
 	int edit_input;
-	int selected_task_edit = selectTaskToEdit(general) - 1;
+	int selected_task_edit = selected_task - 1;
 
 
 	//creates a copy of the task being edited and then erases the origional task
 	Task temp = general[selected_task_edit];
 	general.erase(general.begin() + selected_task_edit);
-
+	system("cls");
 	std::cout << "You have selected task: " << temp.getName() << std::endl;
 	std::cout << "Select an element to edit: " << std::endl;
 	temp.toString();
-
+	std::cout << "Press '0' to exit" << std::endl;
 	std::cin >> edit_input;
 	switch (edit_input) {
-
+	case 0:
+		break;
 	case 1:
 		editName(temp);
 		break;
@@ -218,8 +226,6 @@ Task taskManager::editTask(std::vector<Task>& general) {
 	case 7:
 		editUrgent(temp);
 		break;
-	case 8:
-		break; 	 //this occurs when the user inputs '0' into select task to edit
 	}
 	return temp;
 }
@@ -427,9 +433,9 @@ void taskManager::sortTask(std::vector<Task> general, std::vector<Task> overdue_
 
 	int selected_method = selectMethodToSort();
 
-	switch (selected_method) {
-	case 0:
+	switch (selected_method) {case 0:
 		break; 
+	
 	case 1:
 		std::cout << "Sorted by name: " << std::endl;
 		printVector(sorted_name);
