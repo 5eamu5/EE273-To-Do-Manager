@@ -85,9 +85,7 @@ void contents() {
 		}
 
 	}
-	if (!taskisdigit(contents_input)) {
-		contents();
-	}
+
 	int contents_input_int = std::stoi(contents_input);
 
 	//switch case to direct user to desired functionality
